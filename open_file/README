@@ -1,0 +1,3 @@
+Run the java and c++ program on any server machines you need to setup.
+If these programs can finish without any open file errors,
+then you are sure you won't run into open file problem on these machines.
