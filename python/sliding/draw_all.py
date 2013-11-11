@@ -1,8 +1,11 @@
 #!/usr/bin/python -B
 
+import os
+
 for i  in range(12,72,12):
-    ./cache_hit.py i
-    ./cache_hit.py i true
-    ./miss_rate i
-    ./miss_rate i true
-    ./reject_vs_miss.py i
+    os.system("./cache_hit.py " + str(i))
+    # os.system("./cache_hit.py " + str(i))
+    os.system("./cache_hit.py " + str(i) + " true")
+    os.system("./miss_rate.py " + str(i))
+    os.system("./miss_rate.py " + str(i) + " true")
+    os.system("./reject_vs_miss.py " + str(i))

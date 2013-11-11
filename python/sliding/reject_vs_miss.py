@@ -3,6 +3,8 @@
 import sys
 import matplotlib.pyplot as plt
 import re
+import save_fig as saver
+import xcui_global as xg
 
 inputs = sys.argv
 if(len(inputs) != 2):
@@ -66,4 +68,9 @@ plt.ylim(ymin=0)
 plt.xlabel("Percentile Number used to Predict Request Lantency which is used to do admission control")
 plt.ylabel("Percentage in %")
 plt.legend(loc='upper left')
-plt.show()
+# plt.show()
+
+saver.save(plt, xg.FIGURE_DIRECTORY
+           + "miss_vs_reject_client"
+           + str(CLIENT_NUM)
+           ,ext='png', close=True, verbose=True)
