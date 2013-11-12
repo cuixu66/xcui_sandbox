@@ -35,7 +35,7 @@ overall_cs=h.cal_overall_cache_aggregated("cs", CLIENT_NUM)
 overall_no_ac=h.cal_overall_cache_aggregated("sh/no_ac", CLIENT_NUM)
 
 # all about graphs now
-plt.figure(None, figsize=(16, 12), dpi=100)
+plt.figure(None, figsize=(10, 10), dpi=100)
 
 
 plt.subplot(211)

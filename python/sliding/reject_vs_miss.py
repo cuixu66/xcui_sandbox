@@ -57,7 +57,7 @@ for i in range(KNOB_START, KNOB_STOP, KNOB_STEP):
 
 
 # all about graph now
-plt.figure(None, figsize=(16,12), dpi=100)
+plt.figure(None, figsize=(10,10), dpi=100)
 plt.title("Overall Deadline Miss and Overall Rejection Rate over Percentile used to predict Request Latency with "
           + str(CLIENT_NUM * 4) + " Clients")
 plt.plot(x_axis, overall_rejection, 'r-', label='Overall Rejection')
