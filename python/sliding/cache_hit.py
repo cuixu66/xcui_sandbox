@@ -1,10 +1,11 @@
 #!/usr/bin/python -B
 import sys
-import sliding_avg_calculator as cal
 import matplotlib.pyplot as plt
-import helper as h
-import save_fig as saver
+import plt_helper.save_fig as saver
 import xcui_global as xg
+import calculators.moving_avg_calculator as cal
+import microfuge_specific.microfuge_calculator as mf
+
 
 inputs = sys.argv
 if(len(inputs) != 2 and len(inputs) != 3):
@@ -20,19 +21,23 @@ x_axis = []
 for i in range(10,1000):
     x_axis.append(i)
 
-# sliding_avg_mm=h.cal_one_sliding_avg("../data/mm/test/client12_size100k_run6_acPerc-1_off-1",6)
-# sliding_avg_cs=h.cal_one_sliding_avg("../data/cs/test/client12_size100k_run6_acPerc-1_off-1",6)
-sliding_avg_mm=h.cal_cache_avg_sliding_avg("mm", CLIENT_NUM)
-sliding_avg_cs=h.cal_cache_avg_sliding_avg("cs", CLIENT_NUM)
-sliding_avg_no_ac=h.cal_cache_avg_sliding_avg("sh/no_ac", CLIENT_NUM)
-# sys.exit(66)
+generator = mf.MicrofugeArrayGenerator(mf.MicrofugeResultType.CACHE_HIT,
+                                       "../data/mm/test/", CLIENT_NUM, 4, 11, -1, -1, False)
+sliding_avg_mm=generator.get_moving_avg()
+overall_mm=generator.get_overall_percentage()
+
+generator.BASE_DIR = "../data/cs/test/"
+sliding_avg_cs=generator.get_moving_avg()
+overall_cs=generator.get_overall_percentage()
+
+generator.BASE_DIR = "../data/sh/no_ac/"
+sliding_avg_no_ac=generator.get_moving_avg()
+overall_no_ac=generator.get_overall_percentage()
+
 
 normalized_x_axis=cal.normalize_ranges(10,30,100,1000)
 
-# overall cache hit rate
-overall_mm=h.cal_overall_cache_aggregated("mm", CLIENT_NUM)
-overall_cs=h.cal_overall_cache_aggregated("cs", CLIENT_NUM)
-overall_no_ac=h.cal_overall_cache_aggregated("sh/no_ac", CLIENT_NUM)
+
 
 # all about graphs now
 plt.figure(None, figsize=(10, 10), dpi=100)
