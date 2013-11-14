@@ -3,7 +3,7 @@
 import sys
 import matplotlib.pyplot as plt
 import re
-import save_fig as saver
+import plt_helper.save_fig as saver
 import xcui_global as xg
 
 inputs = sys.argv
