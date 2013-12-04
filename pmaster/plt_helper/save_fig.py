@@ -4,6 +4,7 @@
 # I copied this code from her github which is linked from her website at:
 # http://www.jesshamrick.com/2012/09/03/saving-figures-from-pyplot/
 import os
+import sys
 
 def save(user_plt, path, ext='png', close=True, verbose=True):
     """Save a figure from pyplot.
@@ -48,7 +49,7 @@ def save(user_plt, path, ext='png', close=True, verbose=True):
     savepath = os.path.join(directory, filename)
 
     if verbose:
-        print("Saving figure to '%s'..." % savepath),
+        sys.stderr.write("Saving figure to '%s'..." % savepath)
 
     # Actually save the figure
     user_plt.savefig(savepath)
@@ -58,4 +59,4 @@ def save(user_plt, path, ext='png', close=True, verbose=True):
         user_plt.close()
 
     if verbose:
-        print("Done")
+        sys.stderr.write("Done\n")
