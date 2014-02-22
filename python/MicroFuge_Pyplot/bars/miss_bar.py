@@ -80,6 +80,8 @@ plt.clf()
 
 plt.figure(None, figsize=(8,4), dpi = 100)
 
+ind = ind + .03
+
 mean_values = []
 stderr_values = []
 get_results(DN_DIR, DN_CLIENT_NUMBERS, mean_values, stderr_values)
