@@ -61,10 +61,10 @@ plt.plot(x_axis, overall_sum, "k*", label="Overall Sum of Rejection and Deadline
 
 plt.axis([50,99,0,25])
 
-plt.xticks([55,92], ['Gentle Rejection', 'Aggressive Rejection'])
+plt.xticks([50, 75, 99], ['50', '75' , '99'])
 
 plt.ylim(ymin=0)
-plt.xlabel("Aggressiveness of Rejection")
+plt.xlabel("System Parameter " + r'$\beta$')
 plt.ylabel("Deadline Miss and Rejection Rates in %")
 # plt.twinx()
 # plt.ylabel("Rejection Rate in %")
