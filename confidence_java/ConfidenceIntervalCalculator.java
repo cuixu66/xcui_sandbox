@@ -1,12 +1,12 @@
 import java.text.DecimalFormat;
 
 public class ConfidenceIntervalCalculator {
-    // current default T_TEST_VALUE is set to 
+    // current default T_TEST_VALUE is set to
     // df == 4 & 95% confidence interval
-    private final static double T_TEST = 2.776;
+    private final static double T_TEST = 2.262;
     private static final boolean DEBUG = false;
     public static String execute(double [] data){
-	return execute(data, T_TEST, 2, Double.MAX_VALUE);
+	return execute(data, T_TEST, 10, Double.MAX_VALUE);
     }
     public static String execute(double [] data,
 				 double t_value,
@@ -21,7 +21,7 @@ public class ConfidenceIntervalCalculator {
             }
             else {
                 sum += data[i];
-            }       
+            }
         }
         if(size == 0 || size == 1) return rtn;
         // s stands for "sample"
@@ -36,6 +36,7 @@ public class ConfidenceIntervalCalculator {
         }
         sStandardDerivation /= (double) (size - 1);
         sStandardDerivation = Math.sqrt(sStandardDerivation);
+        System.out.println(sStandardDerivation);
 	if(DEBUG){
 	    System.out.println("sMean == "
 			       + sMean
@@ -65,12 +66,15 @@ public class ConfidenceIntervalCalculator {
 	// source of this example is
 	// http://www.statisticshowto.com/articles/how-to-construct-a-confidence-interval-from-data-using-the-t-distribution/
 	//double[] data = {68, 69, 74, 76, 79, 87, 88, 90, 93};
-	double [] data = {45, 55, 67, 
-			  Double.MAX_VALUE, 
-			  45, 
-			  Double.MAX_VALUE, 
+	double [] data = {45, 55, 67,
+			  Double.MAX_VALUE,
+			  45,
+			  Double.MAX_VALUE,
 			  68, 79, 98, 87, 84, 82};
 	System.out.println(execute(data));
+        double [] data_1 = {4.25, 5.12, 4.55, 4.33, 4.98, 5.23, 4.77, 4.51,
+                            5.39, 4.45};
+	System.out.println(execute(data_1));
 	System.out.println("hello world");
     }
 }
