@@ -2,7 +2,7 @@ import java.text.DecimalFormat;
 
 public class ConfidenceIntervalCalculator {
     // current default T_TEST_VALUE is set to
-    // df == 4 & 95% confidence interval
+    // df == 9 & 95% confidence interval
     private final static double T_TEST = 2.262;
     private static final boolean DEBUG = false;
     public static String execute(double [] data){
@@ -72,6 +72,8 @@ public class ConfidenceIntervalCalculator {
 			  Double.MAX_VALUE,
 			  68, 79, 98, 87, 84, 82};
 	System.out.println(execute(data));
+        // This is the data from Math foundation assignment 4
+        // I can safely use this to verify my program
         double [] data_1 = {4.25, 5.12, 4.55, 4.33, 4.98, 5.23, 4.77, 4.51,
                             5.39, 4.45};
 	System.out.println(execute(data_1));
