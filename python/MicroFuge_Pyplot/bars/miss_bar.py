@@ -155,11 +155,13 @@ p7 = plt.bar(ind[:2] + width * 6.3,  mean_values, width, color='w',
 
 
 
-plt.xlim(xmax=3.3)
+# this line sets the x axis max value
+# plt.xlim(xmax=3.3)
+plt.xlim(xmax=2.0)
 plt.ylabel('Deadline Miss Rate in %')
 plt.xlabel('Number of Concurrent Clients')
 plt.xticks(ind+width * 3.5, ('96', '192', '384', '768') )
-plt.yticks(np.arange(0,31,10))
+plt.yticks(np.arange(0,46,5))
 plt.legend((p0[0], p1[0], p2[0], p3[0], p4[0], p6[0], p7[0]),
            ('Storage System',
             'Memcached',
@@ -168,7 +170,9 @@ plt.legend((p0[0], p1[0], p2[0], p3[0], p4[0], p6[0], p7[0]),
             "DLC + DLS + AC",
             'DLC with 10% Write',
             'DLC + DLS with 10% Write'),
-           loc = 'upper right', prop={'size':12})
+           loc = 'upper left', prop={'size':12},
+           # ncol is # of columns for the legend
+           ncol=2)
 
 # plt.show()
 saver.save(plt, 'EC2_BAR/miss_bar')
