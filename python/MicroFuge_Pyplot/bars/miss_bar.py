@@ -78,9 +78,9 @@ width = 0.11      # the width of the bars: can also be len(x) sequence
 plt.clf()
 
 
-plt.figure(None, figsize=(8,4), dpi = 100)
+plt.figure(None, figsize=(8,4), dpi = 300)
 
-ind = ind + .03
+ind = ind + .06
 
 mean_values = []
 stderr_values = []
@@ -157,7 +157,7 @@ p7 = plt.bar(ind[:2] + width * 6.3,  mean_values, width, color='w',
 
 # this line sets the x axis max value
 # plt.xlim(xmax=3.3)
-plt.xlim(xmax=2.0)
+plt.xlim(xmax=1.95)
 plt.ylabel('Deadline Miss Rate in %')
 plt.xlabel('Number of Concurrent Clients')
 plt.xticks(ind+width * 3.5, ('96', '192', '384', '768') )

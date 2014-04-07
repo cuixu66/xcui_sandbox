@@ -77,8 +77,9 @@ width = 0.13      # the width of the bars: can also be len(x) sequence
 
 plt.clf()
 
+ind = ind - 0.05
 
-plt.figure(None, figsize=(8,4))
+plt.figure(None, figsize=(8,4), dpi = 300)
 
 mean_values = []
 stderr_values = []
@@ -136,8 +137,9 @@ p7 = plt.bar(ind[:2] + width * 6.3,  mean_values, width, color='w',
 
 
 
-
 plt.axis([0.0, 4, 0, 10])
+plt.xlim(xmax=2)
+
 plt.ylabel('Cache Hit Rate in %')
 plt.xlabel('Number of Concurrent Clients')
 plt.xticks(ind+width * 3.5, ('96', '192', '384', '768') )
@@ -146,7 +148,8 @@ plt.legend((p1[0], p2[0], p3[0], p4[0], p6[0], p7[0]),
            ('Memcached',
             'DLC', 'DLC + DLS', "DLC + DLS + AC",
             'DLC with 10% Write', 'DLC + DLS with 10% Write'),
-           loc = 'upper right', prop={'size':12})
+           loc = 'upper left', prop={'size':12},
+           ncol=2)
 
 # plt.show()
 saver.save(plt, 'EC2_BAR/cache_bar')
