@@ -1,10 +1,18 @@
 #!/usr/bin/python -B
 
 import sys
+import matplotlib
 import matplotlib.pyplot as plt
 import re
 from os.path import expanduser
 from plt_helper import save_fig as saver
+from matplotlib import rc
+
+
+############## BOLD ##################
+matplotlib.rc('text', usetex=True)
+matplotlib.rcParams['text.latex.preamble'] = [r'\boldmath']
+############## End of BOLD ##################
 
 CLIENT_NUM= 48
 
@@ -54,17 +62,23 @@ for i in range(KNOB_START, KNOB_STOP, KNOB_STEP):
 
 
 # all about graph now
-plt.figure(None, figsize=(8,4.2), dpi=100)
+plt.figure(None, figsize=(8,4.2), dpi=300)
 plt.plot(x_axis, overall_rejection, 'r-', label='Overall Rejection')
 plt.plot(x_axis, overall_miss, 'b--', label='Overall Deadline Miss')
 plt.plot(x_axis, overall_sum, "k*", label="Overall Sum of Rejection and Deadline Miss")
 
-plt.axis([50,99,0,25])
 
-plt.xticks([50, 75, 99], ['50', '75' , '99'])
+plt.xticks([50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 99],
+           ['50', '55', '60', '65', '70', '75', '80', '85', '90', '95', '99'])
 
 plt.ylim(ymin=0)
-plt.xlabel("System Parameter " + r'$\beta$')
+# Notice how I made beta into BOLD font
+# Consult the source here:
+# http://stackoverflow.com/questions/14324477/bold-font-weight-for-latex-axes-label-in-matplotlib
+# Basically, I added lines enclosed by #### BOLD #### at top of this
+# so my plt uses latex bold character and the expression $\boldssymbol{\beta}$
+# is used to have the bold beta
+plt.xlabel("System Parameter " + r'$\boldsymbol{\beta}$')
 plt.ylabel("Deadline Miss and Rejection Rates in %")
 # plt.twinx()
 # plt.ylabel("Rejection Rate in %")
