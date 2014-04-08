@@ -60,9 +60,10 @@ for i in range(KNOB_START, KNOB_STOP, KNOB_STEP):
     overall_sum.append(overall_rejection[len(overall_sum)] + overall_miss[len(overall_sum)])
     x_axis.append(i)
 
-
+# The next line of code make sure that the xlabel is not cut off from the plot
+plt.subplots_adjust(bottom=0.15)
 # all about graph now
-plt.figure(None, figsize=(8,4.2), dpi=300)
+plt.figure(None, figsize=(8,4), dpi=300)
 plt.plot(x_axis, overall_rejection, 'r-', label='Overall Rejection')
 plt.plot(x_axis, overall_miss, 'b--', label='Overall Deadline Miss')
 plt.plot(x_axis, overall_sum, "k*", label="Overall Sum of Rejection and Deadline Miss")
