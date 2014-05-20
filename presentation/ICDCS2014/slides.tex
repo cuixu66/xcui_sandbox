@@ -69,7 +69,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Typical Use Cases}
+  \frametitle{Typical Scenarios}
   \begin{itemize}
   \item A lot of services are backed up by cloud storage services today.
   \item Response time matters. A longer loading time can drive your customers away.
@@ -171,7 +171,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.8]{img/DLC_arch.png}}
+      \centerline{\includegraphics[scale=0.8]{img/DLC.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -207,7 +207,11 @@
   \frametitle{DLC - Advantages}
   \begin{itemize}
   \item Adaptivity
-  \item Efficient Computation
+    \begin{itemize}
+      \item Avoids overestimating or underestimating the underlying storage
+        system's performance which leads to higher deadline violations.
+    \end{itemize}
+  \item Easy to deploy
   \item Deadline Aware
   \end{itemize}
 \end{frame}
@@ -417,8 +421,8 @@
   \item[\Checkmark] Background and Motivation
   \item[\Checkmark] MicroFuge
     \begin{itemize}
-    \item[\Checkmark] Deadline Cache.
-    \item[\Checkmark] Deadline Scheduler.
+    \item[\Checkmark] Deadline Cache
+    \item[\Checkmark] Deadline Scheduler
     \end{itemize}
   \item Evaluation
   \item Conclusion
@@ -462,7 +466,7 @@
   \item DataServer - Simple key-value store that uses leveldb with a
     replication factor 3.
   \item Benchmarking System - Modified version of Yahoo! Cloud Serving
-    Benchmark (YCSB)
+    Benchmark (YCSB).
     \begin{itemize}
     \item Assign deadlines to each key.\\
       %% \begin{center}
