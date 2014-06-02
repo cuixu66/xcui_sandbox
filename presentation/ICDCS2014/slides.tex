@@ -43,10 +43,12 @@
 
 \begin{frame}
   \frametitle{Cloud Computing}
-  \begin{itemize}
-  \item Cloud computing leverages economies of scale to improve resource sharing.
-  \item This comes at the costs of reduce isolation between tenants.
-  \end{itemize}
+
+  Cloud computing allows us to share resources effectively at virtualized
+  level, but at the same time we are sharing the physical resources and
+  this comes at the cost of reduced isolation between tenants.
+
+
   \centering
   \includegraphics[scale=0.26]{img/icdcs1.png}
 
@@ -54,15 +56,15 @@
 
 
 \begin{frame}
-  \frametitle{Resource Allocation in Cloud Datacenters}
+  \frametitle{Storage Resources in Cloud Datacenters}
   \begin{itemize}
-  \item CPU - Virtualization Technologies
-  \item Memory - Virtualization Technologies
-  \item Network - Software Defined Networks
-  \item Storage
+  \item Cloud Storage
     \begin{itemize}
-    \item Virtualization Technologies degrade overall performance of the device.
     \item Cloud providers offer shared, distributed storage services.
+    \item Resources are nicely divided at the software level by virtualization,
+      but not so well at the  hardware level.
+    \item Virtualization technologies degrade overall performance of the
+      hardware devices.
     \item Multiple tenants: \textcolor{red}{Performance Interference}.
     \end{itemize}
   \end{itemize}
@@ -71,13 +73,50 @@
 \begin{frame}
   \frametitle{Typical Scenarios}
   \begin{itemize}
-  \item A lot of services are backed up by cloud storage services today.
-  \item Response time matters. A longer loading time can drive your customers away.
+  \item The use of cloud storage services are getting popular and a lot of
+    applications are using it today.
+  \item Different customers have different response time requirements.
+  \item Unpredictable performance may drive the customers away.
     %% \centering
     \includegraphics[scale=0.26]{img/A_Cloud_Example.png}
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+  \frametitle{Towards Customer Satisfaction}
+  \begin{itemize}
+  \item Need to differentiate services to different customers based on
+    payment options.
+    \begin{itemize}
+    \item AWS provides Provisioned IOPS (input/output operations per second)
+      Storage where customers can specify an IOPS rate.
+      \begin{figure}
+        % make figure left align
+      \flushleft
+      \includegraphics[scale=0.46]{img/IOPS.png}
+      \caption{Screenshot of AWS 2012 Announcement \url{http://aws.amazon.com/}}
+      \end{figure}
+    \item What does IOPS mean to a customer?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{From a Customer's Point of View}
+  \begin{itemize}
+  \item Some requests may have stringent response time requirements while other
+    requests may be able to tolerate higher latencies.
+    \begin{itemize}
+    \item e.g. core services vs recommendation systems.
+    \end{itemize}
+  \item Need to provide a simple and comprehensible metric to the customers
+    guaranteeing the response times of their requests.
+    \begin{itemize}
+    \item We call them deadlines.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
   \frametitle{Agenda}
@@ -93,20 +132,32 @@
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+  \frametitle{Architecture of MicroFuge}
+  \begin{itemize}
+  \item A new distributed caching and scheduling middleware that provides
+    performance isolation.
+  %% \centering
+  \includegraphics[scale=0.28]{img/MF_FULL.png}
+  \end{itemize}
+
+
+\end{frame}
+
 \begin{frame}
   \frametitle{MicroFuge}
-  \begin{itemize}
-  \item A new distributed caching and scheduling middleware that provides performance isolation.
     \begin{itemize}
     \item Middleware - Reduce the barrier to adoption.
-    \item Distributed - Seamlessly scalable.
     \item Multiple layers - Can be selectively adopted.
-    \item Performance isolation - Relying on an empirically-driven
-      performance model of the underlying storage system.
-    \item Request deadlines - Model the Service Level Objectives (SLOs).
+    \item Distributed - Seamlessly scalable.
+    %% \item Performance isolation - Relying on an empirically-driven
+      %% performance model of the underlying storage system.
+    \item Request deadlines - Models request response requirements time
+      specified by customers.
+    \item Performance isolation - Reduce request deadline misses.
       %% model the isolation with deadlines?
     \end{itemize}
-  \end{itemize}
 \end {frame}
 
 
@@ -126,11 +177,15 @@
 \begin{frame}
   \frametitle{MicroFuge at a Glance}
   \begin{itemize}
-  \item MicroFuge \textit{read} operation interface.
+  \item MicroFuge targets key-value storages such as \textit{Cassandra}.
+  \item MicroFuge provides a modified version of the CRUD operation interface
+    where the client can specify a deadline for each key.
     %% \centering
   \end{itemize}
+  \begin{figure}
   \includegraphics[scale=0.40]{img/MicroFuge_protocol.png}
-
+  \caption{MicroFuge \textit{read} operation interface.}
+  \end{figure}
 \end{frame}
 
 
@@ -176,6 +231,34 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}
+  \frametitle{DLC - An Example (1)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC2.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Example (2)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC3.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Example (3)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC4.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{DLC - Adaptive Caching}
@@ -190,26 +273,13 @@
   \end{itemize}
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{DLC Interface Functions}
-  \begin{itemize}
-  \item Sample \textit{get, put} interface to manipulate the deadline-aware cache.
-  \end{itemize}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.45]{img/DLC_interface.png}}
-    \end{center}
-  \end{figure}
-\end{frame}
-
 \begin{frame}
   \frametitle{DLC - Advantages}
   \begin{itemize}
   \item Adaptivity
     \begin{itemize}
-      \item Avoids overestimating or underestimating the underlying storage
-        system's performance which leads to higher deadline violations.
+    \item Avoids overestimating or underestimating the underlying storage
+      system's performance which leads to higher deadline violations.
     \end{itemize}
   \item Easy to deploy
   \item Deadline Aware
@@ -246,8 +316,8 @@
 \begin{frame}
   \frametitle{DLS - An Example Setup}
   \begin{itemize}
-    \item Each key-value pair is replicated three times and the request issued
-      by the client is best-effort.
+  \item Each key-value pair is replicated three times and the request issued
+    by the client is best-effort.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -260,7 +330,7 @@
 \begin{frame}
   \frametitle{DLS - An Example 1}
   \begin{itemize}
-    \item The client wants to perform a simple value lookup for the key UW.
+  \item The client wants to perform a simple value lookup for the key UW.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -273,7 +343,7 @@
 \begin{frame}
   \frametitle{DLS - An Example 2}
   \begin{itemize}
-    \item The client begins by issuing a cache lookup to DLC.
+  \item The client begins by issuing a cache lookup to DLC.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -285,8 +355,8 @@
 \begin{frame}
   \frametitle{DLS - An Example 3}
   \begin{itemize}
-    \item Concurrently, the client randomly picks two replicas and
-      issue \textit{ticket get} requests to each of the replicas.
+  \item Concurrently, the client randomly picks two replicas and
+    issue \textit{ticket get} requests to each of the replicas.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -298,8 +368,8 @@
 \begin{frame}
   \frametitle{DLS - An Example 4}
   \begin{itemize}
-    \item If the item is not in the cache, the client waits for the DLS to
-      return the tickets.
+  \item If the item is not in the cache, the client waits for the DLS to
+    return the tickets.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -312,8 +382,8 @@
 \begin{frame}
   \frametitle{DLS - An Example 5}
   \begin{itemize}
-    \item When the tickets are sent back to the client, the client will pick
-      the DLS server which responds the first.
+  \item When the tickets are sent back to the client, the client will pick
+    the DLS server which responds the first.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -325,8 +395,8 @@
 \begin{frame}
   \frametitle{DLS - An Example 6}
   \begin{itemize}
-    \item The client makes a blocking call to the selected DLS and waits for
-      its turn to access the data server.
+  \item The client makes a blocking call to the selected DLS and waits for
+    its turn to access the data server.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -338,7 +408,7 @@
 \begin{frame}
   \frametitle{DLS - An Example 7}
   \begin{itemize}
-    \item The client's request is inserted into DLS's pending queue.
+  \item The client's request is inserted into DLS's pending queue.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -350,9 +420,9 @@
 \begin{frame}
   \frametitle{DLS - An Example 8}
   \begin{itemize}
-    \item When a request leaves the pending queue, the DLS may increase the
-      request's deadline and insert the request back into the queue if the
-      deadline can not be met.
+  \item When a request leaves the pending queue, the DLS may increase the
+    request's deadline and insert the request back into the queue if the
+    deadline can not be met.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -406,8 +476,8 @@
   \item Bound the fraction of requests that miss their deadlines.
   \item Requests are rejected in two situations.
     \begin{itemize}
-      \item The request will be miss its own deadline.
-      \item The new request will cause already accepted requests to miss their deadlines.
+    \item The request will be miss its own deadline.
+    \item The new request will cause already accepted requests to miss their deadlines.
     \end{itemize}
   \item Provides a system parameter $\beta$ as a knob to control the percentage
     of deadline misses.
@@ -432,17 +502,17 @@
 \begin{frame}
   \frametitle{Goals of the Evaluation}
   \begin{itemize}
-    \item Comparison of the two caching systems.
-      \begin{itemize}
-        \item Deadline Cache
-        \item Memcached
-      \end{itemize}
-    \item Effectiveness of MicroFuge.
-      \begin{itemize}
-      \item Caching Layer
-      \item Scheduling layer
-      \item Admission control
-  \end{itemize}
+  \item Comparison of the two caching systems.
+    \begin{itemize}
+    \item Deadline Cache
+    \item Memcached
+    \end{itemize}
+  \item Effectiveness of MicroFuge.
+    \begin{itemize}
+    \item Caching Layer
+    \item Scheduling layer
+    \item Admission control
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -486,25 +556,25 @@
 
 
 \begin{frame}
-\frametitle{Experimental Results - Deadline-Aware Caching 1}
-\begin{figure}[t]
-\begin{center}
-\centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
-\caption{Cache hit rate for 192 concurrent clients with DLC and Memcached.}
-\label{fig:cache_192_cs_mm}
-\end{center}
-\end{figure}
+  \frametitle{Experimental Results - Deadline-Aware Caching 1}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
+      \caption{Cache hit rate for 192 concurrent clients with DLC and Memcached.}
+      \label{fig:cache_192_cs_mm}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Experimental Results - Deadline-Aware Caching 2}
-\begin{figure}[t]
-\begin{center}
-\centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/cache_48.png}}
-\caption{Cache hit rate for 192 concurrent clients with DLC + DLS and Memcached.}
-\label{fig:cache_192_sh_mm}
-\end{center}
-\end{figure}
+  \frametitle{Experimental Results - Deadline-Aware Caching 2}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/cache_48.png}}
+      \caption{Cache hit rate for 192 concurrent clients with DLC + DLS and Memcached.}
+      \label{fig:cache_192_sh_mm}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 
@@ -512,61 +582,61 @@
 
 \begin{frame}
   \frametitle{Experimental Results - Deadline Miss 1}
-    \begin{figure}[t]
-      \begin{center}
-        \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
-        \caption{Deadline miss rate for 192 concurrent clients with DLC and Memcached.}
-        \label{fig:miss_192_cs_mm}
-      \end{center}
-    \end{figure}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
+      \caption{Deadline miss rate for 192 concurrent clients with DLC and Memcached.}
+      \label{fig:miss_192_cs_mm}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Experimental Results - Deadline Miss 2}
-\begin{figure}[t]
-\begin{center}
-\centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/miss_48.png}}
-\caption{Deadline miss rate for 192 concurrent clients with DLC + DLS and Memcached.}
-\label{fig:miss_192_sh_mm}
-\end{center}
-\end{figure}
+  \frametitle{Experimental Results - Deadline Miss 2}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/miss_48.png}}
+      \caption{Deadline miss rate for 192 concurrent clients with DLC + DLS and Memcached.}
+      \label{fig:miss_192_sh_mm}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Experimental Results - Deadline Miss 3}
-\begin{figure}[t]
-\begin{center}
-\centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
-\caption{Deadline miss rate for 192 concurrent clients with DLC + DLS + AC and Memcached.}
-\label{fig:miss_192_ac_mm}
-\end{center}
-\end{figure}
+  \frametitle{Experimental Results - Deadline Miss 3}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
+      \caption{Deadline miss rate for 192 concurrent clients with DLC + DLS + AC and Memcached.}
+      \label{fig:miss_192_ac_mm}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Experimental Results - Tunable Admission Control}
-\begin{figure}[t]
-\begin{center}
-\centerline{\includegraphics[scale=0.5]{img/EC2/Varying_ac/varying_acPerc_192.png}}
-\caption{Deadline miss vs. rejection rates with respect to various values of
-  system parameter $\beta$ for 192 clients.}
-\label{fig:varying_ac}
-\end{center}
-\end{figure}
+  \frametitle{Experimental Results - Tunable Admission Control}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/Varying_ac/varying_acPerc_192.png}}
+      \caption{Deadline miss vs. rejection rates with respect to various values of
+        system parameter $\beta$ for 192 clients.}
+      \label{fig:varying_ac}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 
 \begin{frame}
-\frametitle{Experimental Results - Overall Miss Rates}
-\begin{figure}[t]
-\begin{center}
-\centerline{\includegraphics[scale=0.5]{img/EC2/EC2_BAR/miss_bar.png}}
-\caption{Overall deadline miss rate with various system setups for
-  96 and 192 concurrent clients.}
-\label{fig:bar_miss}
-\end{center}
-\end{figure}
+  \frametitle{Experimental Results - Overall Miss Rates}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_BAR/miss_bar.png}}
+      \caption{Overall deadline miss rate with various system setups for
+        96 and 192 concurrent clients.}
+      \label{fig:bar_miss}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 
