@@ -34,6 +34,11 @@
 \institute{\includegraphics[scale=0.25]{img/UniversityOfWaterloo_logo_vert_rgb.png}}
 \date{{\tiny\today}}
 
+
+% my macros
+\newcommand{\myv}{\vspace{3 mm}}
+
+
 \begin{document}
 
 \begin{frame}
@@ -41,82 +46,99 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Cloud Computing}
+%% \begin{frame}
+  %% \frametitle{Cloud Computing}
 
-  Cloud computing allows us to share resources effectively at virtualized
-  level, but at the same time we are sharing the physical resources and
-  this comes at the cost of reduced isolation between tenants.
+  %% Cloud computing allows us to share resources effectively at virtualized
+  %% level, but at the same time we are sharing the physical resources and
+  %% this comes at the cost of reduced isolation between tenants.
 
 
-  \centering
-  \includegraphics[scale=0.26]{img/icdcs1.png}
+  %% \centering
+  %% \includegraphics[scale=0.26]{img/icdcs1.png}
 
-\end{frame}
+%% \end{frame}
 
 
 \begin{frame}
   \frametitle{Storage Resources in Cloud Datacenters}
-  \begin{itemize}
-  \item Cloud Storage
+\vspace{-5 mm}
     \begin{itemize}
-    \item Cloud providers offer shared, distributed storage services.
-    \item Resources are nicely divided at the software level by virtualization,
-      but not so well at the  hardware level.
-    \item Virtualization technologies degrade overall performance of the
-      hardware devices.
-    \item Multiple tenants: \textcolor{red}{Performance Interference}.
+    \item Cloud computing allows sharing of resource at the cost of reduced isolation.
+      \newline
+    \item Unlike memory, storage system is more affected by performance interference.
+      \newline
+      \begin{itemize}
+      \item Most cloud storage systems still use disks.
+        \newline
+      \item Disks performance are highly sensitive to sharing.
+      \end{itemize}
     \end{itemize}
-  \end{itemize}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{Typical Scenarios}
+  \vspace{5 mm}
   \begin{itemize}
-  \item The use of cloud storage services are getting popular and a lot of
-    applications are using it today.
-  \item Different customers have different response time requirements.
-  \item Unpredictable performance may drive the customers away.
+
+  \item Many customers, such as streaming provider, use cloud storage systems.
+    \myv
+  \item Customers have different response time requirements.
+    \myv
+  \item Predictable performance is desired.
     %% \centering
-    \includegraphics[scale=0.26]{img/A_Cloud_Example.png}
   \end{itemize}
+  \begin{figure}
+    \includegraphics[scale=0.30]{img/A_Cloud_Example.png}
+  \end{figure}
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{Towards Customer Satisfaction}
-  \begin{itemize}
-  \item Need to differentiate services to different customers based on
-    payment options.
-    \begin{itemize}
-    \item AWS provides Provisioned IOPS (input/output operations per second)
-      Storage where customers can specify an IOPS rate.
-      \begin{figure}
-        % make figure left align
-      \flushleft
-      \includegraphics[scale=0.46]{img/IOPS.png}
-      \caption{Screenshot of AWS 2012 Announcement \url{http://aws.amazon.com/}}
-      \end{figure}
-    \item What does IOPS mean to a customer?
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
   \frametitle{From a Customer's Point of View}
+\myv
+%% \vspace{10 mm}
   \begin{itemize}
-  \item Some requests may have stringent response time requirements while other
-    requests may be able to tolerate higher latencies.
+  \item Requests may have stringent response time requirements.
+    \myv
+  \item Other requests may be able to tolerate high latencies.
     \begin{itemize}
-    \item e.g. core services vs recommendation systems.
+    \item e.g. recommendation system.
     \end{itemize}
-  \item Need to provide a simple and comprehensible metric to the customers
-    guaranteeing the response times of their requests.
+    \myv
+  \item Need to represent desired response time of requests.
+    \myv
+  \item Want a simple and comprehensible metric
     \begin{itemize}
-    \item We call them deadlines.
+    \item Request deadlines.
     \end{itemize}
   \end{itemize}
+\vspace{-5 mm}
+  \begin{figure}
+    \includegraphics[scale=0.35]{img/Request_Deadline_Example.png}
+  \end{figure}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Towards Quality of Service}
+  \begin{itemize}
+    \item Numerous cloud storage systems - hard to modify.
+      \myv
+    \item Modify the middlewares - caching and scheduling.
+      \myv
+    \item Memcached is a distributed memory object caching system.
+      \begin{itemize}
+      \item Reduces response times.
+      \item Deadline oblivious - can not distinguish different response time
+        requirements.
+      \end{itemize}
+      \myv
+    \item[\Checkmark] Use deadline aware middlewares to improve performance isolation.
+  \end{itemize}
+
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Agenda}
@@ -134,39 +156,60 @@
 
 
 \begin{frame}
-  \frametitle{Architecture of MicroFuge}
-  \begin{itemize}
-  \item A new distributed caching and scheduling middleware that provides
-    performance isolation.
-  %% \centering
-  \includegraphics[scale=0.28]{img/MF_FULL.png}
-  \end{itemize}
-
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{MicroFuge}
+  \frametitle{Design Goals of MicroFuge}
+  \vspace{-15 mm}
     \begin{itemize}
-    \item Middleware - Reduce the barrier to adoption.
-    \item Multiple layers - Can be selectively adopted.
-    \item Distributed - Seamlessly scalable.
-    %% \item Performance isolation - Relying on an empirically-driven
-      %% performance model of the underlying storage system.
-    \item Request deadlines - Models request response requirements time
-      specified by customers.
-    \item Performance isolation - Reduce request deadline misses.
-      %% model the isolation with deadlines?
+    \item Provide performance isolation.
+      \begin{itemize}
+        \myv
+      \item Use deadlines to model the response time requirement.
+        \myv
+      \item Reduce request deadline misses.
+        \myv
+      \item Adaptively modelling the performance of the underlying storage
+        system.
+      \end{itemize}
+    \myv
+    \item Easy adoption - middleware approach.
+      \myv
+    \item Scalable - distributed design.
     \end{itemize}
 \end {frame}
 
 
+%% xcuiTODO: make picture better
 \begin{frame}
-  \frametitle{Major Contributions of MicroFuge}
+  \frametitle{MicroFuge Overview}
   \begin{itemize}
-  \item \textbf{Deadline Cache (DLC)} - Deadline-aware, model-driven distributed
-    caching system.
-  \item \textbf{Deadline Scheduler (DLS)} - Deadline-aware distributed scheduling system.
+  \item A distributed caching and scheduling middleware that provides
+    performance isolation.
+  %% \centering
+  \includegraphics[scale=0.28]{img/MF_FULL.png}
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Contributions of MicroFuge}
+  \vspace{-10 mm}
+  \begin{itemize}
+  \item \textbf{Deadline Cache (DLC)}
+    \myv
+    \begin{itemize}
+      \item Performance modelling component.
+      \item Deadline-aware eviction.
+    \end{itemize}
+    \myv
+  \item \textbf{Deadline Scheduler (DLS)}
+    \myv
+    \begin{itemize}
+      \item Performance modelling component.
+      \item Deadline-aware scheduling.
+    \end{itemize}
+    \myv
   \item \textbf{Evaluation} - Demonstrates the effectiveness of MicroFuge in
     an EC2 deployment using the YCSB benchmark.
   \end{itemize}
@@ -177,133 +220,117 @@
 \begin{frame}
   \frametitle{MicroFuge at a Glance}
   \begin{itemize}
-  \item MicroFuge targets key-value storages such as \textit{Cassandra}.
-  \item MicroFuge provides a modified version of the CRUD operation interface
-    where the client can specify a deadline for each key.
+  \item Targets key-value storage.
+    \myv
+  \item A modified version of the CRUD operation interface.
     %% \centering
   \end{itemize}
   \begin{figure}
+    %% \begin{flushleft}
   \includegraphics[scale=0.40]{img/MicroFuge_protocol.png}
+
   \caption{MicroFuge \textit{read} operation interface.}
+    %% \end{flushleft}
   \end{figure}
 \end{frame}
 
-
 \begin{frame}
-  \frametitle{Full MicroFuge - An example}
-  \begin{itemize}
-  \item Sample timeline for a read request from a client. For this request,
-    the requested item is not in contained in the cache.
-  \end{itemize}
-
+  \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.60]{img/RequestTimelineHorizontal.png}}
-    \end{center}
-  \end{figure}
-\end {frame}
-
-\begin{frame}
-  \frametitle{Agenda}
-  \begin{itemize}
-  \item[\Checkmark] Background and Motivation
-  \item[\Checkmark] MicroFuge
-    \begin{itemize}
-    \item Deadline Cache
-    \item Deadline Scheduler
-    \end{itemize}
-  \item Evaluation
-  \item Conclusion
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Deadline Cache (DLC) - Architecture}
-  \begin{itemize}
-  \item Major components - Multiple LRU queues for deadline-aware eviction and
-    a performance modeling component.
-  \end{itemize}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.8]{img/DLC.png}}
+      \centerline{\includegraphics[scale=0.38]{img/DLC.png}}
     \end{center}
   \end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Example (1)}
+  \frametitle{DLC - An Cache Eviction Example (1)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC2.png}}
-    \end{center}
-  \end{figure}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DLC - An Example (2)}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC3.png}}
-    \end{center}
-  \end{figure}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DLC - An Example (3)}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC4.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC1.png}}
     \end{center}
   \end{figure}
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (2)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_2.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
 
 \begin{frame}
-  \frametitle{DLC - Adaptive Caching}
-  \begin{itemize}
-  \item Multiple queues - Maintain the LRU ordering of key-value pairs spanning
-    different deadline ranges.
-  \item Queue specific multiplier - Adaptively computed to model the likelihood
-    of deadline misses within a deadline range.
-  \item Modified Recency Value (MRV) - Apply the multiplier to the time elapsed
-    since the last access to an item.
-  \item Eviction - The item with largest MRV is evicted.
-  \end{itemize}
+  \frametitle{DLC - An Cache Eviction Example (3)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_3.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (4)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_4.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (5)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_5.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (6)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_6.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (7)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_7.png}}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{DLC - Advantages}
+  \vspace{-15 mm}
   \begin{itemize}
-  \item Adaptivity
+  \item Deadline Aware.
+    \myv
+  \item Adaptive performance modelling.
     \begin{itemize}
+      \myv
     \item Avoids overestimating or underestimating the underlying storage
       system's performance which leads to higher deadline violations.
+      \myv
     \end{itemize}
-  \item Easy to deploy
-  \item Deadline Aware
+
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Agenda}
-  \begin{itemize}
-  \item[\Checkmark] Background and Motivation
-  \item[\Checkmark] MicroFuge
-    \begin{itemize}
-    \item[\Checkmark] Deadline Cache
-    \item Deadline Scheduler
-    \end{itemize}
-  \item Evaluation
-  \item Conclusion
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
   \frametitle{Deadline Scheduler (DLS) High-level Architecture}
   \begin{itemize}
-  \item Distributed scheduling layer - Each scheduler is responsible for
+  \item Each scheduler is responsible for
     controlling the access to a single data-server.
   \end{itemize}
   \begin{figure}
@@ -316,14 +343,16 @@
 \begin{frame}
   \frametitle{DLS - An Example Setup}
   \begin{itemize}
-  \item Each key-value pair is replicated three times and the request issued
-    by the client is best-effort.
+  \item Each key-value pair is replicated three times. blah blah blah
+    \newline
+
   \end{itemize}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example1.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 
@@ -344,25 +373,29 @@
   \frametitle{DLS - An Example 2}
   \begin{itemize}
   \item The client begins by issuing a cache lookup to DLC.
+\newline
   \end{itemize}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example3.png}}
     \end{center}
   \end{figure}
+
+
 \end{frame}
 
 \begin{frame}
   \frametitle{DLS - An Example 3}
   \begin{itemize}
-  \item Concurrently, the client randomly picks two replicas and
-    issue \textit{ticket get} requests to each of the replicas.
+  \item Issue ticket \textit{get requests} concurrently.
+\newline
   \end{itemize}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example4.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -376,6 +409,7 @@
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example5.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 
@@ -390,6 +424,7 @@
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example6.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -403,18 +438,21 @@
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example7.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{DLS - An Example 7}
   \begin{itemize}
   \item The client's request is inserted into DLS's pending queue.
+\newline
   \end{itemize}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.38]{img/DLS_Example8.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -426,15 +464,18 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLS_Example9.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example9.png}}
     \end{center}
   \end{figure}
+
+
 \end{frame}
 
 \begin{frame}
   \frametitle{DLS - An Example 9}
   \begin{itemize}
   \item The DLS informs the client that the wait is over.
+\newline
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -448,18 +489,20 @@
   \frametitle{DLS - An Example 10}
   \begin{itemize}
   \item The clients issues the read request to the data server.
+\newline
   \end{itemize}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.35]{img/DLS_Example11.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{DLS - An Example 11}
   \begin{itemize}
-  \item Upon receiving the response from the data server, the client releases
+  \item After receiving the response, the client releases
     the ticket and concurrently inserts the data into the cache.
   \end{itemize}
   \begin{figure}
@@ -467,6 +510,7 @@
       \centerline{\includegraphics[scale=0.35]{img/DLS_Example12.png}}
     \end{center}
   \end{figure}
+
 \end{frame}
 
 
@@ -484,20 +528,22 @@
   \end{itemize}
 \end{frame}
 
-
 \begin{frame}
-  \frametitle{Agenda}
+  \frametitle{Full MicroFuge}
   \begin{itemize}
-  \item[\Checkmark] Background and Motivation
-  \item[\Checkmark] MicroFuge
-    \begin{itemize}
-    \item[\Checkmark] Deadline Cache
-    \item[\Checkmark] Deadline Scheduler
-    \end{itemize}
-  \item Evaluation
-  \item Conclusion
+  \item
+    MicroFuge combines both the DLC and DLS layers to achieve its best
+    performance.
   \end{itemize}
-\end{frame}
+
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.60]{img/RequestTimelineHorizontal.png}}
+    \end{center}
+  \end{figure}
+\end {frame}
+
+
 
 \begin{frame}
   \frametitle{Goals of the Evaluation}
@@ -638,27 +684,6 @@
     \end{center}
   \end{figure}
 \end{frame}
-
-
-
-
-\begin{frame}
-  \frametitle{Agenda}
-  \begin{itemize}
-  \item[\Checkmark] Background and Motivation
-  \item[\Checkmark] MicroFuge
-    \begin{itemize}
-    \item[\Checkmark] Deadline Cache
-    \item[\Checkmark] Deadline Scheduler
-    \end{itemize}
-  \item[\Checkmark] Evaluation
-  \item Conclusion
-  \end{itemize}
-\end{frame}
-
-
-
-
 
 \begin{frame}
   \frametitle{Conclusion}
