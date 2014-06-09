@@ -30,7 +30,7 @@
 \logo{\includegraphics[scale=.25]{img/csuow}}
 
 \title[]{MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems}
-\author[Akshay Singh, Xu Cui, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee]{Akshay Singh, Xu Cui, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee}
+\author[Akshay Singh, Xu Cui, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee]{Akshay Singh, \textbf{Xu Cui}, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee}
 \institute{\includegraphics[scale=0.25]{img/UniversityOfWaterloo_logo_vert_rgb.png}}
 \date{{\tiny\today}}
 
@@ -69,29 +69,51 @@
     \item Unlike memory, storage system is more affected by performance interference.
       \newline
       \begin{itemize}
-      \item Most cloud storage systems still use disks.
+      \item Different access patterns by different clients.
         \newline
-      \item Disks performance are highly sensitive to sharing.
+      \item Various kinds of workloads.
       \end{itemize}
     \end{itemize}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{Typical Scenarios}
-  \vspace{5 mm}
+  \frametitle{A Typical Cloud Scenario}
+  %% \vspace{5 mm}
   \begin{itemize}
 
-  \item Many customers, such as streaming provider, use cloud storage systems.
+  \item A HTTP request may require 35 database lookups.
+    \begin{itemize}
+      \myv
+    \item Source: Nathan Farrington and Alexey Andreyev, Facebook’s Data Center Network Architecture.
+      \myv
+    \item Response time can add up quickly.
+    \end{itemize}
     \myv
-  \item Customers have different response time requirements.
+  \item Latency matters.
     \myv
   \item Predictable performance is desired.
     %% \centering
   \end{itemize}
-  \begin{figure}
-    \includegraphics[scale=0.30]{img/A_Cloud_Example.png}
-  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implications of Performance Isolation}
+  \begin{itemize}
+  \item Disk sharing can be troublesome for performance.
+    \myv
+  \item Clients want to have the performance as if there is no sharing.
+    \vspace{-2.5 mm}
+  \item Dedicated disks.
+    \myv
+  \item Meet clients' response time requirements.
+    \begin{itemize}
+      \myv
+      \item Request deadlines.
+        \myv
+      \item \(\text{Meeting deadlines} \rightarrow \text{Provides Performance Isolation.}\)
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 
@@ -107,9 +129,9 @@
     \item e.g. recommendation system.
     \end{itemize}
     \myv
-  \item Need to represent desired response time of requests.
+  \item Need to capture desired response time of requests.
     \myv
-  \item Want a simple and comprehensible metric
+  \item A comprehensible metric
     \begin{itemize}
     \item Request deadlines.
     \end{itemize}
@@ -121,74 +143,94 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Towards Quality of Service}
+  \frametitle{Middleware Approach}
   \begin{itemize}
-    \item Numerous cloud storage systems - hard to modify.
+    \item Many cloud storage systems - hard to modify.
       \myv
-    \item Modify the middlewares - caching and scheduling.
-      \myv
-    \item Memcached is a distributed memory object caching system.
+    \item Memcached - A popular middleware.
       \begin{itemize}
       \item Reduces response times.
-      \item Deadline oblivious - can not distinguish different response time
+      \item Deadline oblivious - can't distinguish different response time
         requirements.
       \end{itemize}
       \myv
-    \item[\Checkmark] Use deadline aware middlewares to improve performance isolation.
+    \item Similar approach to Memcached, use deadline-aware middleware to
+      improve performance isolation.
   \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Agenda}
-  \begin{itemize}
-  \item[\Checkmark] Background and Motivation
-  \item MicroFuge
-    \begin{itemize}
-    \item Deadline Cache
-    \item Deadline Scheduler
-    \end{itemize}
-  \item Evaluation
-  \item Conclusion
-  \end{itemize}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Agenda}
+  %% \begin{itemize}
+  %% \item[\Checkmark] Background and Motivation
+  %% \item MicroFuge
+    %% \begin{itemize}
+    %% \item Deadline Cache
+    %% \item Deadline Scheduler
+    %% \end{itemize}
+  %% \item Evaluation
+  %% \item Conclusion
+  %% \end{itemize}
+%% \end{frame}
 
 
 \begin{frame}
   \frametitle{Design Goals of MicroFuge}
-  \vspace{-15 mm}
+  \vspace{-5 mm}
     \begin{itemize}
-    \item Provide performance isolation.
+    \item Meet client requirements despite of performance interference.
       \begin{itemize}
         \myv
-      \item Use deadlines to model the response time requirement.
+      \item Capture response time requirements with request deadlines.
         \myv
-      \item Reduce request deadline misses.
+      \item Meet request deadlines.
         \myv
-      \item Adaptively modelling the performance of the underlying storage
+      \item Self-adapts to the performance of the underlying storage
         system.
       \end{itemize}
     \myv
     \item Easy adoption - middleware approach.
       \myv
-    \item Scalable - distributed design.
+    \item Follow the client-driven, decentralized design.
     \end{itemize}
 \end {frame}
 
 
 %% xcuiTODO: make picture better
 \begin{frame}
-  \frametitle{MicroFuge Overview}
-  \begin{itemize}
-  \item A distributed caching and scheduling middleware that provides
-    performance isolation.
-  %% \centering
-  \includegraphics[scale=0.28]{img/MF_FULL.png}
-  \end{itemize}
+  \frametitle{MicroFuge Overview (1)}
+  %% \begin{itemize}
+  %% \item A distributed caching and scheduling middleware that provides
+    %% performance isolation.
+  \begin{center}
+  \includegraphics[scale=0.32]{img/MF_FULL_NEW_1.png}
+  \end{center}
+  %% \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{MicroFuge Overview (2)}
+  %% \begin{itemize}
+  %% \item A distributed caching and scheduling middleware that provides
+    %% performance isolation.
+  \begin{center}
+  \includegraphics[scale=0.32]{img/MF_FULL_NEW_2.png}
+  \end{center}
+  %% \end{itemize}
+\end{frame}
 
+\begin{frame}
+  \frametitle{MicroFuge Overview (3)}
+  %% \begin{itemize}
+  %% \item A distributed caching and scheduling middleware that provides
+    %% performance isolation.
+  \begin{center}
+  \includegraphics[scale=0.32]{img/MF_FULL_NEW_3.png}
+  \end{center}
+  %% \end{itemize}
+\end{frame}
 
 
 
@@ -199,19 +241,18 @@
   \item \textbf{Deadline Cache (DLC)}
     \myv
     \begin{itemize}
-      \item Performance modelling component.
+      \item Multiple LRU queues for performance modelling.
+        \myv
       \item Deadline-aware eviction.
     \end{itemize}
     \myv
   \item \textbf{Deadline Scheduler (DLS)}
     \myv
     \begin{itemize}
-      \item Performance modelling component.
       \item Deadline-aware scheduling.
+        \myv
+      \item Admission control.
     \end{itemize}
-    \myv
-  \item \textbf{Evaluation} - Demonstrates the effectiveness of MicroFuge in
-    an EC2 deployment using the YCSB benchmark.
   \end{itemize}
 \end {frame}
 
@@ -220,15 +261,15 @@
 \begin{frame}
   \frametitle{MicroFuge at a Glance}
   \begin{itemize}
-  \item Targets key-value storage.
+  \item Middleware for popular key-value storage.
     \myv
   \item A modified version of the CRUD operation interface.
     %% \centering
   \end{itemize}
   \begin{figure}
     %% \begin{flushleft}
-  \includegraphics[scale=0.40]{img/MicroFuge_protocol.png}
-
+\vspace{-5 mm}
+  \includegraphics[scale=0.25]{img/MicroFuge_protocol.png}
   \caption{MicroFuge \textit{read} operation interface.}
     %% \end{flushleft}
   \end{figure}
@@ -238,16 +279,47 @@
   \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.38]{img/DLC.png}}
+      \centerline{\includegraphics[scale=0.38]{img/DLC_ARC_1.png}}
     \end{center}
   \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Deadline Cache (DLC) - Components}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.38]{img/DLC_ARC_2.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Deadline Cache (DLC) - Components}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.38]{img/DLC_ARC_3.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (0)}
+  \begin{itemize}
+  \item Client issues a cache lookup.
+  \item Not in the cache.
+  \item Client retrieves the item from the database.
+  \item Client issues a cache put.
+  \item If the cache is full, a cache eviction happens.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{DLC - An Cache Eviction Example (1)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC1.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
