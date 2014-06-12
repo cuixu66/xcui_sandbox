@@ -276,7 +276,7 @@
   \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.38]{img/DLC_ARC_1.png}}
+      \centerline{\includegraphics[scale=0.35]{img/DLC_ARC_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -286,7 +286,7 @@
   \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.38]{img/DLC_ARC_2.png}}
+      \centerline{\includegraphics[scale=0.35]{img/DLC_ARC_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -296,27 +296,16 @@
   \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.38]{img/DLC_ARC_3.png}}
+      \centerline{\includegraphics[scale=0.35]{img/DLC_ARC_3.png}}
     \end{center}
   \end{figure}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (0)}
-  \begin{itemize}
-  \item Client issues a cache lookup.
-  \item Not in the cache.
-  \item Client retrieves the item from the database.
-  \item Client issues a cache put.
-  \item If the cache is full, a cache eviction happens.
-  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{DLC - An Cache Eviction Example (1)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_1.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -326,7 +315,7 @@
   \frametitle{DLC - An Cache Eviction Example (2)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_2.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -335,7 +324,7 @@
   \frametitle{DLC - An Cache Eviction Example (3)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_3.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_3.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -344,7 +333,7 @@
   \frametitle{DLC - An Cache Eviction Example (4)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_4.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_4.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -354,7 +343,7 @@
   \frametitle{DLC - An Cache Eviction Example (5)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_5.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_5.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -363,20 +352,56 @@
   \frametitle{DLC - An Cache Eviction Example (6)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_6.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_6.png}}
     \end{center}
   \end{figure}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{DLC - An Cache Eviction Example (7)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_NEW_7.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_7.png}}
     \end{center}
   \end{figure}
 \end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (8)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_8.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (9)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_9.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (10)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_10.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLC - An Cache Eviction Example (11)}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_11.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{DLC - Advantages}
@@ -385,7 +410,7 @@
   \item Deadline-aware - favour items with shorter deadlines in terms
     of memory allocation. \myv
   \item LRU - favour items which are accessed more frequently. \myv
-  \item Adaptiveness - favour items with higher probability to miss their
+  \item Adaptiveness - favour items which are more likely to miss their
     deadlines.  \myv
   \item \textbf{DLC} - combines all three to achieve adaptive deadline-aware caching.
   \end{itemize}
@@ -422,7 +447,7 @@
 
 
 \begin{frame}
-  \frametitle{DLS - An Example 1}
+  \frametitle{DLS - An Example (1)}
   \begin{itemize}
   \item The client wants to perform a simple value lookup for the key UW.
   \end{itemize}
@@ -435,7 +460,7 @@
 
 
 \begin{frame}
-  \frametitle{DLS - An Example 2}
+  \frametitle{DLS - An Example (2)}
   \begin{itemize}
   \item The client begins by issuing a cache lookup to DLC.
 \newline
@@ -450,7 +475,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 3}
+  \frametitle{DLS - An Example (3)}
   \begin{itemize}
   \item Issue ticket \textit{get requests} concurrently.
 \newline
@@ -464,9 +489,9 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 4}
+  \frametitle{DLS - An Example (4)}
   \begin{itemize}
-  \item If the item is not in the cache, the client waits for the DLS to
+  \item If the item is not in the cache, the client waits for DLS to
     return the tickets.
   \end{itemize}
   \begin{figure}
@@ -474,12 +499,11 @@
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example5.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{DLS - An Example 5}
+  \frametitle{DLS - An Example (5)}
   \begin{itemize}
   \item When the tickets are sent back to the client, the client will pick
     the DLS server which responds the first.
@@ -489,11 +513,10 @@
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example6.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 6}
+  \frametitle{DLS - An Example (6)}
   \begin{itemize}
   \item The client makes a blocking call to the selected DLS and waits for
     its turn to access the data server.
@@ -503,43 +526,68 @@
       \centerline{\includegraphics[scale=0.40]{img/DLS_Example7.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 7}
+  \frametitle{DLS - An Example (7)}
   \begin{itemize}
-  \item The client's request is inserted into DLS's pending queue.
-\newline
+  \item Let's zoom in to look at the state of DLS's pending queue.
+    \newline
+    \newline
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.38]{img/DLS_Example8.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_1.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 8}
+  \frametitle{DLS - An Example (8)}
   \begin{itemize}
-  \item When a request leaves the pending queue, the DLS may increase the
-    request's deadline and insert the request back into the queue if the
-    deadline can not be met.
+  \item The new item is inserted according to earliest deadline first ordering.
+    \newline
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example9.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_2.png}}
     \end{center}
   \end{figure}
+\end{frame}
 
 
+\begin{frame}
+  \frametitle{DLS - An Example (9)}
+  \begin{itemize}
+  \item Let's assume of the running reuqests just finished.
+    \newline
+    \newline
+  \end{itemize}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_3.png}}
+    \end{center}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 9}
+  \frametitle{DLS - An Example (10)}
   \begin{itemize}
-  \item The DLS informs the client that the wait is over.
+  \item DLS may increase the request's deadline and insert the request back
+    into the queue if the deadline can not be met.
+    \newline
+  \end{itemize}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_4.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLS - An Example (11)}
+  \begin{itemize}
+  \item DLS informs the client that the wait is over.
 \newline
   \end{itemize}
   \begin{figure}
@@ -551,7 +599,7 @@
 
 
 \begin{frame}
-  \frametitle{DLS - An Example 10}
+  \frametitle{DLS - An Example (12)}
   \begin{itemize}
   \item The clients issues the read request to the data server.
 \newline
@@ -561,11 +609,10 @@
       \centerline{\includegraphics[scale=0.35]{img/DLS_Example11.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example 11}
+  \frametitle{DLS - An Example (13)}
   \begin{itemize}
   \item After receiving the response, the client releases
     the ticket and concurrently inserts the data into the cache.
@@ -575,7 +622,6 @@
       \centerline{\includegraphics[scale=0.35]{img/DLS_Example12.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 
@@ -600,7 +646,6 @@
     MicroFuge combines both the DLC and DLS layers to achieve its best
     performance.
   \end{itemize}
-
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.60]{img/RequestTimelineHorizontal.png}}
@@ -610,22 +655,22 @@
 
 
 
-\begin{frame}
-  \frametitle{Goals of the Evaluation}
-  \begin{itemize}
-  \item Comparison of the two caching systems.
-    \begin{itemize}
-    \item Deadline Cache
-    \item Memcached
-    \end{itemize}
-  \item Effectiveness of MicroFuge.
-    \begin{itemize}
-    \item Caching Layer
-    \item Scheduling layer
-    \item Admission control
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Goals of the Evaluation}
+  %% \begin{itemize}
+  %% \item Comparison of the two caching systems.
+    %% \begin{itemize}
+    %% \item Deadline Cache
+    %% \item Memcached
+    %% \end{itemize}
+  %% \item Effectiveness of MicroFuge.
+    %% \begin{itemize}
+    %% \item Caching Layer
+    %% \item Scheduling layer
+    %% \item Admission control
+    %% \end{itemize}
+  %% \end{itemize}
+%% \end{frame}
 
 
 \begin{frame}
@@ -645,7 +690,7 @@
   \frametitle{Experimental Setup - Details}
   \begin{itemize}
   \item DataServer - Simple key-value store that uses leveldb with a
-    replication factor 3.
+    replication factor of 3.
   \item Benchmarking System - Modified version of Yahoo! Cloud Serving
     Benchmark (YCSB).
     \begin{itemize}
@@ -663,11 +708,12 @@
   \item Data Set - Key-value store with 80 million records, 86.4 GB in size.
   \item Cache - Total capacity of 19.2GB.
   \end{itemize}
+  % NOTES: We selected one range of deadlines which looked reasonable to us.
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Experimental Results - Deadline-Aware Caching 1}
+  \frametitle{Deadline-Aware Caching with DLC}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
@@ -678,7 +724,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Experimental Results - Deadline-Aware Caching 2}
+  \frametitle{Deadline-Aware Caching with DLC and DLS}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/cache_48.png}}
@@ -688,11 +734,8 @@
   \end{figure}
 \end{frame}
 
-
-
-
 \begin{frame}
-  \frametitle{Experimental Results - Deadline Miss 1}
+  \frametitle{Deadline Miss Rate with DLC}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
@@ -704,7 +747,7 @@
 
 
 \begin{frame}
-  \frametitle{Experimental Results - Deadline Miss 2}
+  \frametitle{Deadline Miss Rate with DLC and DLS}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/miss_48.png}}
@@ -714,51 +757,37 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Experimental Results - Deadline Miss 3}
-  \begin{figure}[t]
-    \begin{center}
-      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
-      \caption{Deadline miss rate for 192 concurrent clients with DLC + DLS + AC and Memcached.}
-      \label{fig:miss_192_ac_mm}
-    \end{center}
-  \end{figure}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Experimental Results - Deadline Miss 3}
+  %% \begin{figure}[t]
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
+      %% \caption{Deadline miss rate for 192 concurrent clients with DLC + DLS + AC and Memcached.}
+      %% \label{fig:miss_192_ac_mm}
+    %% \end{center}
+  %% \end{figure}
+%% \end{frame}
 
-\begin{frame}
-  \frametitle{Experimental Results - Tunable Admission Control}
-  \begin{figure}[t]
-    \begin{center}
-      \centerline{\includegraphics[scale=0.5]{img/EC2/Varying_ac/varying_acPerc_192.png}}
-      \caption{Deadline miss vs. rejection rates with respect to various values of
-        system parameter $\beta$ for 192 clients.}
-      \label{fig:varying_ac}
-    \end{center}
-  \end{figure}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Experimental Results - Overall Miss Rates}
-  \begin{figure}[t]
-    \begin{center}
-      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_BAR/miss_bar.png}}
-      \caption{Overall deadline miss rate with various system setups for
-        96 and 192 concurrent clients.}
-      \label{fig:bar_miss}
-    \end{center}
-  \end{figure}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Experimental Results - Tunable Admission Control}
+  %% \begin{figure}[t]
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.5]{img/EC2/Varying_ac/varying_acPerc_192.png}}
+      %% \caption{Deadline miss vs. rejection rates with respect to various values of
+        %% system parameter $\beta$ for 192 clients.}
+      %% \label{fig:varying_ac}
+    %% \end{center}
+  %% \end{figure}
+%% \end{frame}
 
 \begin{frame}
   \frametitle{Conclusion}
   \begin{itemize}
   \item Predictable performance is necessary in multi-tenant environments.
-  \item MicroFuge - A middleware approach to performance isolation in cloud
-    storage systems.
-  \item Deadline awareness - Reduces deadline miss rate from over 20\% to
+  \item MicroFuge tackles the performance isolation problem with its
+    deadline-aware caching and scheduling middelware.
+  \item MicroFuge reduces deadline miss rate from over 20\% to
     less than 5\%.
   \end{itemize}
 \end{frame}
-
 \end{document}
