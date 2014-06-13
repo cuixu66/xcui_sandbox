@@ -205,7 +205,7 @@
 
 \begin{frame}
   \frametitle{MicroFuge Overview (1)}
-  \vspace{-10 mm}
+  %% \vspace{-5 mm}
   \begin{center}
   \includegraphics[scale=0.32]{img/MF_FULL_NEW_1.png}
   \end{center}
@@ -213,7 +213,7 @@
 
 \begin{frame}
   \frametitle{MicroFuge Overview (2)}
-  \vspace{-10 mm}
+  %% \vspace{-5 mm}
   \begin{center}
   \includegraphics[scale=0.32]{img/MF_FULL_NEW_2.png}
   \end{center}
@@ -221,7 +221,7 @@
 
 \begin{frame}
   \frametitle{MicroFuge Overview (3)}
-  \vspace{-10 mm}
+  %% \vspace{-5 mm}
   \begin{center}
   \includegraphics[scale=0.32]{img/MF_FULL_NEW_3.png}
   \end{center}
@@ -266,7 +266,7 @@
   \begin{figure}
     %% \begin{flushleft}
 \vspace{-5 mm}
-  \includegraphics[scale=0.25]{img/MicroFuge_protocol.png}
+  \includegraphics[scale=0.19]{img/MicroFuge_protocol.png}
   \caption{MicroFuge \textit{read} operation interface.}
     %% \end{flushleft}
   \end{figure}
@@ -302,7 +302,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (1)}
+  \frametitle{DLC - A Cache Eviction Example (1)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_1.png}}
@@ -312,7 +312,7 @@
 
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (2)}
+  \frametitle{DLC - A Cache Eviction Example (2)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_2.png}}
@@ -321,7 +321,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (3)}
+  \frametitle{DLC - A Cache Eviction Example (3)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_3.png}}
@@ -330,7 +330,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (4)}
+  \frametitle{DLC - A Cache Eviction Example (4)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_4.png}}
@@ -340,7 +340,7 @@
 
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (5)}
+  \frametitle{DLC - A Cache Eviction Example (5)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_5.png}}
@@ -349,7 +349,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (6)}
+  \frametitle{DLC - A Cache Eviction Example (6)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_6.png}}
@@ -358,7 +358,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (7)}
+  \frametitle{DLC - A Cache Eviction Example (7)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_7.png}}
@@ -367,7 +367,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (8)}
+  \frametitle{DLC - A Cache Eviction Example (8)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_8.png}}
@@ -376,7 +376,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (9)}
+  \frametitle{DLC - A Cache Eviction Example (9)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_9.png}}
@@ -385,7 +385,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (10)}
+  \frametitle{DLC - A Cache Eviction Example (10)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_10.png}}
@@ -394,7 +394,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - An Cache Eviction Example (11)}
+  \frametitle{DLC - A Cache Eviction Example (11)}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLC_V5_11.png}}
@@ -570,11 +570,12 @@
   \end{figure}
 \end{frame}
 
+
 \begin{frame}
   \frametitle{DLS - An Example (10)}
   \begin{itemize}
-  \item DLS may increase the request's deadline and insert the request back
-    into the queue if the deadline can not be met.
+  \item If the request deadline can be met, it will take one of the empty slots
+    inside the running request pool.
     \newline
   \end{itemize}
   \begin{figure}
@@ -584,8 +585,39 @@
   \end{figure}
 \end{frame}
 
+
+
 \begin{frame}
   \frametitle{DLS - An Example (11)}
+  \begin{itemize}
+  \item If request deadline can't be met, DLS may increase the request's
+    deadline and insert the request back into the queue.
+    \newline
+  \end{itemize}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_5.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{DLS - An Example (12)}
+  \begin{itemize}
+  \item The push-back can happen at most once to prevent starvation.
+    \newline
+    \newline
+  \end{itemize}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_6.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLS - An Example (13)}
   \begin{itemize}
   \item DLS informs the client that the wait is over.
 \newline
@@ -599,7 +631,7 @@
 
 
 \begin{frame}
-  \frametitle{DLS - An Example (12)}
+  \frametitle{DLS - An Example (14)}
   \begin{itemize}
   \item The clients issues the read request to the data server.
 \newline
@@ -612,7 +644,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example (13)}
+  \frametitle{DLS - An Example (15)}
   \begin{itemize}
   \item After receiving the response, the client releases
     the ticket and concurrently inserts the data into the cache.
@@ -784,8 +816,10 @@
   \frametitle{Conclusion}
   \begin{itemize}
   \item Predictable performance is necessary in multi-tenant environments.
+    \myv
   \item MicroFuge tackles the performance isolation problem with its
     deadline-aware caching and scheduling middleware.
+    \myv
   \item MicroFuge reduces deadline miss rate from over 20\% to
     less than 5\%.
   \end{itemize}
