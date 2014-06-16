@@ -67,88 +67,58 @@
     \item Cloud computing allows sharing of resource at the cost of reduced isolation.
       \newline
     \item Storage systems are highly sensitive to performance interference.
-      \newline
-      \begin{itemize}
-      \item Due to different access patterns - random vs. sequential.
-      \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A Typical Cloud Scenario}
+  \frametitle{A Cloud Scenario}
   %% \vspace{5 mm}
   \begin{itemize}
 
-  \item A HTTP request may require 35 database lookups.\footnote{Nathan Farrington and Alexey Andreyev, Facebook’s Data Center Network Architecture.}
+  \item A particular HTTP request may require 35 database
+    lookups.${^{1}}$
+    %% \footnote{Nathan Farrington and Alexey Andreyev, Facebook’s Data
+      %% Center Network Architecture.}
     \begin{itemize}
       \myv
     \item  Response time can add up quickly.
     \end{itemize}
     \myv
-  \item Studies\footnote{Akamai Technologies Inc. and Jupiter Research Inc.
+  \item Studies${^{2}}$ have shown that high latencies may drive customer away.  \myv
+    %% \centering
+    \myv
+    \myv
+  \item \footnotesize{[1] Nathan Farrington and Alexey Andreyev, Facebook’s Data
+      Center Network Architecture.}
+  \item \footnotesize{[2] Akamai Technologies Inc. and Jupiter Research Inc.
     Akamai and Jupiter Research identify `4 seconds' as the new threshold of
     acceptability for retail web page response times.
-    http\://www.akamai.com/html/about/press/releases/20
-    06/press\_110606.html.}
-    have shown that high latencies may drive customer away.
-    \myv
-  \item Predictable performance is desired.
-    %% \centering
-  \end{itemize}
+    \url{http://www.akamai.com/html/about/press/releases/20
+    06/press_110606.html}.}
 
+    %% \footnote{Akamai Technologies Inc. and Jupiter Research Inc.
+    %% Akamai and Jupiter Research identify `4 seconds' as the new threshold of
+    %% acceptability for retail web page response times.
+    %% http\://www.akamai.com/html/about/press/releases/20
+    %% 06/press\_110606.html.}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Performance Isolation}
   \begin{itemize}
-  \item Clients prefer to have the performance as if the resources are dedicated.
-    \myv
+  \item Ideally, clients want to specify their latency requirements regardless
+    of what other clients are doing. \myv
   \item Possible solutions to performance isolation.
     \myv
     %% \vspace{-2.5 mm}
     \begin{itemize}
-    \item Dedicated resources - costly.
+    \item Dedicated resources.
       \myv
     \item Meet clients' response time requirements in the shared environment.
       \myv
     \item \(\text{Meeting response time requirement} \rightarrow \text{Performance Isolation.}\)
     \end{itemize}
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{From a Customer's Point of View}
-  \myv
-  \begin{itemize}
-  \item Clients want to differentiate their services.
-    \myv
-  \item Different requests have different response time requirements.
-    \myv
-  \item Capture the desired response time of requests with request deadlines.
-  \end{itemize}
-  \vspace{-5 mm}
-  %% \begin{flushleft}
-  \begin{figure}
-    \includegraphics[scale=0.35]{img/Request_Deadline_Example.png}
-  \end{figure}
-  %% \end{flushleft}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Middleware Approach}
-  \begin{itemize}
-    \item Difficult to support numerous cloud storage systems.
-      \myv
-    \item Memcached - A popular middleware.
-      \begin{itemize}
-      \item Reduces response times.
-      \item Deadline oblivious - doesn't distinguish different response time
-        requirements.
-      \end{itemize}
-      \myv
-    \item Similar approach to Memcached, use deadline-aware middleware to
-      improve performance isolation.
   \end{itemize}
 \end{frame}
 
@@ -162,19 +132,39 @@
   \item \textbf{Deadline Cache (DLC)}
     \myv
       \begin{itemize}
-      \item Performs deadline-aware evictions.
+      \item Performance modelling of the underlying storage system.
+        \myv
+      \item Uses multiple LRU queues for deadline-aware eviction.
         \myv
       \end{itemize}
     \item \textbf{Deadline Scheduler (DLS)}
       \begin{itemize}
         \myv
-      \item Performs deadline-aware scheduling.
+      \item Performs feedback-driven deadline-aware scheduling.
         \myv
       \item {\textcolor[gray]{0.5} {Optionally performs admission control.}}
       \end{itemize}
   \end{itemize}
   \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Middleware Approach}
+  \begin{itemize}
+    \item Difficult to support numerous cloud storage systems.
+      \myv
+    \item Memcached - A popular middleware.
+      \begin{itemize}
+        \myv
+      \item Reduces response times.
+        \myv
+      \item Deadline oblivious - doesn't distinguish different response time
+        requirements.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
 
 %% xcuiTODO: add the next slide to my latex sample/tutorial slides
 %% \begin{frame}
@@ -187,20 +177,6 @@
   %% Text color can be set using RGB values
   %% (\textcolor[rgb]{0,1,0}{like so}), or \textcolor[gray]{0.2}{shades}
   %% \textcolor[gray]{0.5}{of} \textcolor[gray]{0.8}{grey}.
-%% \end{frame}
-
-%% \begin{frame}
-  %% \frametitle{Agenda}
-  %% \begin{itemize}
-  %% \item[\Checkmark] Background and Motivation
-  %% \item MicroFuge
-    %% \begin{itemize}
-    %% \item Deadline Cache
-    %% \item Deadline Scheduler
-    %% \end{itemize}
-  %% \item Evaluation
-  %% \item Conclusion
-  %% \end{itemize}
 %% \end{frame}
 
 \begin{frame}
@@ -227,56 +203,12 @@
   \end{center}
 \end{frame}
 
-
-
-\begin{frame}
-  \frametitle{Contributions of MicroFuge}
-  \vspace{-10 mm}
-  \begin{itemize}
-  \item \textbf{Deadline Cache (DLC)}
-    \myv
-    \begin{itemize}
-    \item Performance modelling of the underlying storage system.
-      \myv
-    \item Use multiple LRU queues for deadline-aware eviction.
-    \end{itemize}
-    \myv
-  \item \textbf{Deadline Scheduler (DLS)}
-    \begin{itemize}
-      \myv
-    \item Performance modelling of the underlying storage system.
-      \myv
-    \item Deadline-aware scheduling.
-      \myv
-    \item \textcolor[gray]{0.5} {Admission control}.
-    \end{itemize}
-  \end{itemize}
-\end {frame}
-
-
-
-\begin{frame}
-  \frametitle{MicroFuge at a Glance}
-  \begin{itemize}
-  \item Middleware for popular key-value storage.
-    \myv
-  \item A modified version of the CRUD operation interface.
-    %% \centering
-  \end{itemize}
-  \begin{figure}
-    %% \begin{flushleft}
-\vspace{-5 mm}
-  \includegraphics[scale=0.19]{img/MicroFuge_protocol.png}
-  \caption{MicroFuge \textit{read} operation interface.}
-    %% \end{flushleft}
-  \end{figure}
-\end{frame}
-
 \begin{frame}
   \frametitle{Deadline Cache (DLC) - Components}
+  \vspace{5.2 mm}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLC_ARC_1.png}}
+      \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -286,20 +218,20 @@
   \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLC_ARC_2.png}}
+      \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Deadline Cache (DLC) - Components}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLC_ARC_3.png}}
-    \end{center}
-  \end{figure}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Deadline Cache (DLC) - Components}
+  %% \begin{figure}
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_3.png}}
+    %% \end{center}
+  %% \end{figure}
+%% \end{frame}
 
 \begin{frame}
   \frametitle{DLC - A Cache Eviction Example (1)}
@@ -404,15 +336,13 @@
 
 
 \begin{frame}
-  \frametitle{DLC - Advantages}
+  \frametitle{DLC - Properties}
   \vspace{-15 mm}
   \begin{itemize}
-  \item Deadline-aware - favour items with shorter deadlines in terms
-    of memory allocation. \myv
-  \item LRU - favour items which are accessed more frequently. \myv
-  \item Adaptiveness - favour items which are more likely to miss their
-    deadlines.  \myv
-  \item \textbf{DLC} - combines all three to achieve adaptive deadline-aware caching.
+  \item LRU ensures high cache hit rate. \myv
+  \item Adaptive eviction policy across multiple LRU queues ensures the items
+    that are more likely to miss their deadlines to be kept in the cache. \myv
+  \item \textbf{DLC} achieves adaptive deadline-aware caching.
   \end{itemize}
 \end{frame}
 
@@ -493,6 +423,7 @@
   \begin{itemize}
   \item If the item is not in the cache, the client waits for DLS to
     return the tickets.
+    \vspace{-0.1 mm}
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -505,8 +436,8 @@
 \begin{frame}
   \frametitle{DLS - An Example (5)}
   \begin{itemize}
-  \item When the tickets are sent back to the client, the client will pick
-    the DLS server which responds the first.
+  \item Returned tickets may have different states so the client can make an
+    informed decision.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -671,21 +602,19 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Full MicroFuge}
-  \begin{itemize}
-  \item
-    MicroFuge combines both the DLC and DLS layers to achieve its best
-    performance.
-  \end{itemize}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.60]{img/RequestTimelineHorizontal.png}}
-    \end{center}
-  \end{figure}
-\end {frame}
-
-
+%% \begin{frame}
+  %% \frametitle{Full MicroFuge}
+  %% \begin{itemize}
+  %% \item
+    %% MicroFuge combines both the DLC and DLS layers to achieve its best
+    %% performance.
+  %% \end{itemize}
+  %% \begin{figure}
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.60]{img/RequestTimelineHorizontal.png}}
+    %% \end{center}
+  %% \end{figure}
+%% \end {frame}
 
 %% \begin{frame}
   %% \frametitle{Goals of the Evaluation}
