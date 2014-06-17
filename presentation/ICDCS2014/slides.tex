@@ -74,8 +74,7 @@
   \frametitle{A Cloud Scenario}
   %% \vspace{5 mm}
   \begin{itemize}
-
-  \item A particular HTTP request may require 35 database
+  \item In worst case, a particular HTTP request may require 35 database
     lookups.${^{1}}$
     %% \footnote{Nathan Farrington and Alexey Andreyev, Facebook’s Data
       %% Center Network Architecture.}
@@ -84,31 +83,27 @@
     \item  Response time can add up quickly.
     \end{itemize}
     \myv
-  \item Studies${^{2}}$ have shown that high latencies may drive customer away.  \myv
+  \item Amazon reported 100ms of latency cost them 1\% in sales.${^{2}}$
+    \myv
+  \item Google found an extra .5 seconds delay caused 20\% drop in search
+    traffic.${^{2}}$
     %% \centering
     \myv
     \myv
-  \item \footnotesize{[1] Nathan Farrington and Alexey Andreyev, Facebook’s Data
-      Center Network Architecture.}
-  \item \footnotesize{[2] Akamai Technologies Inc. and Jupiter Research Inc.
-    Akamai and Jupiter Research identify `4 seconds' as the new threshold of
-    acceptability for retail web page response times.
-    \url{http://www.akamai.com/html/about/press/releases/20
-    06/press_110606.html}.}
-
-    %% \footnote{Akamai Technologies Inc. and Jupiter Research Inc.
-    %% Akamai and Jupiter Research identify `4 seconds' as the new threshold of
-    %% acceptability for retail web page response times.
-    %% http\://www.akamai.com/html/about/press/releases/20
-    %% 06/press\_110606.html.}
+    \myv
+    \myv
+  \item[--] \footnotesize{[1] Nathan Farrington and Alexey Andreyev, Facebook’s Data
+    Center Network Architecture.}
+  \item[--] \footnotesize{[2] Greg Lindem, Make Data Useful,
+    \url{http://www.scribd.com/doc/4970486/Make-Data-Useful-by-Greg-Linden-Amazon-com}.}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Performance Isolation}
   \begin{itemize}
-  \item Ideally, clients want to specify their latency requirements regardless
-    of what other clients are doing. \myv
+  \item Clients want to have performance guarantees in the shared
+    environment. \myv
   \item Possible solutions to performance isolation.
     \myv
     %% \vspace{-2.5 mm}
@@ -132,7 +127,7 @@
   \item \textbf{Deadline Cache (DLC)}
     \myv
       \begin{itemize}
-      \item Performance modelling of the underlying storage system.
+      \item Builds a performance model of the system.
         \myv
       \item Uses multiple LRU queues for deadline-aware eviction.
         \myv
@@ -140,9 +135,12 @@
     \item \textbf{Deadline Scheduler (DLS)}
       \begin{itemize}
         \myv
-      \item Performs feedback-driven deadline-aware scheduling.
+      \item Performs intelligent replica selection.
         \myv
-      \item {\textcolor[gray]{0.5} {Optionally performs admission control.}}
+      \item Implements feedback-driven deadline-aware scheduling.
+        \myv
+        %% \item {\textcolor[gray]{0.5} {Optionally performs admission control.}}
+      \item Optionally performs admission control.
       \end{itemize}
   \end{itemize}
   \end{itemize}
@@ -158,13 +156,11 @@
         \myv
       \item Reduces response times.
         \myv
-      \item Deadline oblivious - doesn't distinguish different response time
+      \item Deadline oblivious - does not distinguish different response time
         requirements.
       \end{itemize}
   \end{itemize}
 \end{frame}
-
-
 
 %% xcuiTODO: add the next slide to my latex sample/tutorial slides
 %% \begin{frame}
@@ -183,7 +179,7 @@
   \frametitle{MicroFuge Overview (1)}
   %% \vspace{-5 mm}
   \begin{center}
-  \includegraphics[scale=0.32]{img/MF_FULL_NEW_1.png}
+  \includegraphics[scale=0.33]{img/MF_FULL_NEW_1.png}
   \end{center}
 \end{frame}
 
@@ -191,24 +187,18 @@
   \frametitle{MicroFuge Overview (2)}
   %% \vspace{-5 mm}
   \begin{center}
-  \includegraphics[scale=0.32]{img/MF_FULL_NEW_2.png}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{MicroFuge Overview (3)}
-  %% \vspace{-5 mm}
-  \begin{center}
-  \includegraphics[scale=0.32]{img/MF_FULL_NEW_3.png}
+  \includegraphics[scale=0.33]{img/MF_FULL_NEW_2.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{Deadline Cache (DLC) - Components}
-  \vspace{5.2 mm}
+  %% \vspace{5.2 mm}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_1.png}}
+      %% next line is the scale for screenshots taken at home
+      %% \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_1.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_ARC_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -218,7 +208,9 @@
   \frametitle{Deadline Cache (DLC) - Components}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_2.png}}
+      %% next line is the scale for screenshots taken at home
+      %% \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_2.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_ARC_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -237,7 +229,7 @@
   \frametitle{DLC - A Cache Eviction Example (1)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_1.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -247,7 +239,7 @@
   \frametitle{DLC - A Cache Eviction Example (2)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_2.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -256,7 +248,7 @@
   \frametitle{DLC - A Cache Eviction Example (3)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_3.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_3.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -265,7 +257,7 @@
   \frametitle{DLC - A Cache Eviction Example (4)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_4.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_4.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -275,7 +267,7 @@
   \frametitle{DLC - A Cache Eviction Example (5)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_5.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_5.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -284,7 +276,7 @@
   \frametitle{DLC - A Cache Eviction Example (6)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_6.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_6.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -293,7 +285,7 @@
   \frametitle{DLC - A Cache Eviction Example (7)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_7.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_7.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -302,7 +294,7 @@
   \frametitle{DLC - A Cache Eviction Example (8)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_8.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_8.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -311,7 +303,7 @@
   \frametitle{DLC - A Cache Eviction Example (9)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_9.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_9.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -320,29 +312,21 @@
   \frametitle{DLC - A Cache Eviction Example (10)}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_10.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLC_V6_10.png}}
     \end{center}
   \end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLC - A Cache Eviction Example (11)}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_V5_11.png}}
-    \end{center}
-  \end{figure}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{DLC - Properties}
+  \frametitle{DLC - Benefits}
   \vspace{-15 mm}
   \begin{itemize}
-  \item LRU ensures high cache hit rate. \myv
-  \item Adaptive eviction policy across multiple LRU queues ensures the items
-    that are more likely to miss their deadlines to be kept in the cache. \myv
-  \item \textbf{DLC} achieves adaptive deadline-aware caching.
+  \item Multiple LRU enables DLC to perform deadline-aware evictions.
+    \myv
+  \item Adaptive policy accounts for both the client request rate for each
+    deadline range and the underlying system's performance.
+    \myv
+  \item \textbf{DLC} offers adaptive deadline-aware caching.
   \end{itemize}
 \end{frame}
 
