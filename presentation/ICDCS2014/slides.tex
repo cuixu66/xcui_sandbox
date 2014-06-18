@@ -334,8 +334,8 @@
 \begin{frame}
   \frametitle{Deadline Scheduler (DLS) High-level Architecture}
   \begin{itemize}
-  \item Each scheduler is responsible for
-    controlling the access to a single data-server.
+  \item Scheduler is responsible for controlling the access to
+    data-server.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -345,33 +345,17 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{DLS - An Example Setup}
-  \begin{itemize}
-  \item Each key-value pair is replicated three times.
-    \newline
-
-  \end{itemize}
-  \begin{figure}
-    \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example1.png}}
-    \end{center}
-  \end{figure}
-
-\end{frame}
-
-
-\begin{frame}
   \frametitle{DLS - An Example (1)}
   \begin{itemize}
-  \item The client wants to perform a simple value lookup for the key UW.
+  \item The client wants to perform a value lookup for the key UW.
+    \newline
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example2.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example01.png}}
     \end{center}
   \end{figure}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{DLS - An Example (2)}
@@ -381,25 +365,22 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example3.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example02.png}}
     \end{center}
   \end{figure}
-
-
 \end{frame}
 
 \begin{frame}
   \frametitle{DLS - An Example (3)}
   \begin{itemize}
-  \item Issue ticket \textit{get requests} concurrently.
+  \item Issue two \textit{get ticket} requests concurrently.
 \newline
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example4.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example03.png}}
     \end{center}
   \end{figure}
-
 \end{frame}
 
 \begin{frame}
@@ -407,11 +388,11 @@
   \begin{itemize}
   \item If the item is not in the cache, the client waits for DLS to
     return the tickets.
-    \vspace{-0.1 mm}
+    %% \vspace{-0.1 mm}
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example5.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example04.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -420,12 +401,12 @@
 \begin{frame}
   \frametitle{DLS - An Example (5)}
   \begin{itemize}
-  \item Returned tickets may have different states so the client can make an
-    informed decision.
+  \item Returned tickets contain extra information to help the client to make
+    an informed decision.
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example6.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example05.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -438,7 +419,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.40]{img/DLS_Example7.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example06.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -452,7 +433,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_1.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -465,7 +446,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_2.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -480,7 +461,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_3.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_3.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -495,7 +476,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_4.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_4.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -511,7 +492,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_5.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_5.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -526,7 +507,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.33]{img/DLS_Example8_6.png}}
+      \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_6.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -539,11 +520,10 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLS_Example10.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example07.png}}
     \end{center}
   \end{figure}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{DLS - An Example (14)}
@@ -553,7 +533,7 @@
   \end{itemize}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLS_Example11.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example08.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -564,41 +544,27 @@
   \item After receiving the response, the client releases
     the ticket and concurrently inserts the data into the cache.
   \end{itemize}
+  \vspace{-0.9 mm}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.35]{img/DLS_Example12.png}}
+      \centerline{\includegraphics[scale=0.40]{img/DLS_Example09.png}}
     \end{center}
   \end{figure}
 \end{frame}
 
-
 \begin{frame}
-  \frametitle{DLS - Admission Control}
+  \frametitle{DLS - Benefits}
   \begin{itemize}
-  \item Bound the fraction of requests that miss their deadlines.
-  \item Requests are rejected in two situations.
-    \begin{itemize}
-    \item The request will be miss its own deadline.
-    \item The new request will cause already accepted requests to miss their deadlines.
-    \end{itemize}
-  \item Provides a system parameter $\beta$ as a knob to control the percentage
-    of deadline misses.
+  \item A load-balancing system that directs each client to the server that is
+    most likely to meets the request's deadline.
+    \myv
+  \item A variant of earliest deadline first scheduling that limit the impact
+    of deadline violations on other requests.
+    \myv
+  \item A tunable admission control system that bound the percentage of
+    requests missing their deadlines.
   \end{itemize}
 \end{frame}
-
-%% \begin{frame}
-  %% \frametitle{Full MicroFuge}
-  %% \begin{itemize}
-  %% \item
-    %% MicroFuge combines both the DLC and DLS layers to achieve its best
-    %% performance.
-  %% \end{itemize}
-  %% \begin{figure}
-    %% \begin{center}
-      %% \centerline{\includegraphics[scale=0.60]{img/RequestTimelineHorizontal.png}}
-    %% \end{center}
-  %% \end{figure}
-%% \end {frame}
 
 %% \begin{frame}
   %% \frametitle{Goals of the Evaluation}
@@ -702,28 +668,6 @@
   \end{figure}
 \end{frame}
 
-%% \begin{frame}
-  %% \frametitle{Experimental Results - Deadline Miss 3}
-  %% \begin{figure}[t]
-    %% \begin{center}
-      %% \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
-      %% \caption{Deadline miss rate for 192 concurrent clients with DLC + DLS + AC and Memcached.}
-      %% \label{fig:miss_192_ac_mm}
-    %% \end{center}
-  %% \end{figure}
-%% \end{frame}
-
-%% \begin{frame}
-  %% \frametitle{Experimental Results - Tunable Admission Control}
-  %% \begin{figure}[t]
-    %% \begin{center}
-      %% \centerline{\includegraphics[scale=0.5]{img/EC2/Varying_ac/varying_acPerc_192.png}}
-      %% \caption{Deadline miss vs. rejection rates with respect to various values of
-        %% system parameter $\beta$ for 192 clients.}
-      %% \label{fig:varying_ac}
-    %% \end{center}
-  %% \end{figure}
-%% \end{frame}
 
 \begin{frame}
   \frametitle{Conclusion}
@@ -737,4 +681,48 @@
     less than 5\%.
   \end{itemize}
 \end{frame}
+
+
+\begin{frame}
+  \centerline{Thank You.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DLS - Admission Control}
+  \begin{itemize}
+  \item Bound the fraction of requests that miss their deadlines.
+  \item Requests are rejected in two situations.
+    \begin{itemize}
+    \item The request will be miss its own deadline.
+    \item The new request will cause already accepted requests to miss their deadlines.
+    \end{itemize}
+  \item Provides a system parameter $\beta$ as a knob to control the percentage
+    of deadline misses.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Experimental Results - Deadline Miss 3}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
+      \caption{Deadline miss rate for 192 concurrent clients with DLC + DLS + AC and Memcached.}
+      \label{fig:miss_192_ac_mm}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Experimental Results - Tunable Admission Control}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/Varying_ac/varying_acPerc_192.png}}
+      \caption{Deadline miss vs. rejection rates with respect to various values of
+        system parameter $\beta$ for 192 clients.}
+      \label{fig:varying_ac}
+    \end{center}
+  \end{figure}
+\end{frame}
+
 \end{document}
