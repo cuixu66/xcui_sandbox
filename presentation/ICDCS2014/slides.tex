@@ -197,8 +197,8 @@
   \begin{figure}
     \begin{center}
       %% next line is the scale for screenshots taken at home
-      %% \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_1.png}}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_ARC_1.png}}
+      \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_1.png}}
+      %% \centerline{\includegraphics[scale=0.33]{img/DLC_ARC_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -209,8 +209,8 @@
   \begin{figure}
     \begin{center}
       %% next line is the scale for screenshots taken at home
-      %% \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_2.png}}
-      \centerline{\includegraphics[scale=0.33]{img/DLC_ARC_2.png}}
+      \centerline{\includegraphics[scale=0.45]{img/DLC_ARC_2.png}}
+      %% \centerline{\includegraphics[scale=0.33]{img/DLC_ARC_2.png}}
     \end{center}
   \end{figure}
 \end{frame}
@@ -321,11 +321,11 @@
   \frametitle{DLC - Benefits}
   \vspace{-15 mm}
   \begin{itemize}
-  \item Multiple LRU enables DLC to perform deadline-aware evictions.
+  \item Multiple LRU queues enable DLC to perform deadline-aware evictions.
     \myv
-  \item Adaptive policy accounts for both the client request rate for each
-    deadline range and the underlying system's performance.
-    \myv
+  \item Adaptive policy considers both the client request rate for each
+    deadline range and the underlying system's performance.  \myv
+
   \item \textbf{DLC} offers adaptive deadline-aware caching.
   \end{itemize}
 \end{frame}
@@ -334,7 +334,7 @@
 \begin{frame}
   \frametitle{Deadline Scheduler (DLS) High-level Architecture}
   \begin{itemize}
-  \item Scheduler is responsible for controlling the access to
+  \item Scheduler is responsible for controlling access to
     data-server.
   \end{itemize}
   \begin{figure}
@@ -427,10 +427,11 @@
 \begin{frame}
   \frametitle{DLS - An Example (7)}
   \begin{itemize}
-  \item Let's zoom in to look at the state of DLS's pending queue.
-    \newline
+  \item Let's zoom in to look at the requests waiting to be served by the data
+    server inside scheduler's pending queue.
     \newline
   \end{itemize}
+  \vspace{-5 mm}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_1.png}}
@@ -444,6 +445,7 @@
   \item The new item is inserted according to earliest deadline first ordering.
     \newline
   \end{itemize}
+  \vspace{-5 mm}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_2.png}}
@@ -459,6 +461,7 @@
     \newline
     \newline
   \end{itemize}
+  \vspace{-5 mm}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_3.png}}
@@ -474,6 +477,7 @@
     inside the running request pool.
     \newline
   \end{itemize}
+  \vspace{-5 mm}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_4.png}}
@@ -486,10 +490,11 @@
 \begin{frame}
   \frametitle{DLS - An Example (11)}
   \begin{itemize}
-  \item If request deadline can't be met, DLS may increase the request's
+  \item If request deadline cannot be met, DLS may increase the request's
     deadline and insert the request back into the queue.
     \newline
   \end{itemize}
+  \vspace{-5 mm}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_5.png}}
@@ -505,6 +510,7 @@
     \newline
     \newline
   \end{itemize}
+  \vspace{-5 mm}
   \begin{figure}
     \begin{center}
       \centerline{\includegraphics[scale=0.33]{img/DLS_Example_ZOOM_6.png}}
@@ -515,7 +521,7 @@
 \begin{frame}
   \frametitle{DLS - An Example (13)}
   \begin{itemize}
-  \item DLS informs the client that the wait is over.
+  \item DLS informs the client that it can access the data server.
 \newline
   \end{itemize}
   \begin{figure}
@@ -541,8 +547,8 @@
 \begin{frame}
   \frametitle{DLS - An Example (15)}
   \begin{itemize}
-  \item After receiving the response, the client releases
-    the ticket and concurrently inserts the data into the cache.
+  \item After receiving the response, the client reports
+    the execution time and concurrently inserts the data into the cache.
   \end{itemize}
   \vspace{-0.9 mm}
   \begin{figure}
@@ -556,12 +562,12 @@
   \frametitle{DLS - Benefits}
   \begin{itemize}
   \item A load-balancing system that directs each client to the server that is
-    most likely to meets the request's deadline.
+    most likely to meet each request's deadline.
     \myv
-  \item A variant of earliest deadline first scheduling that limit the impact
+  \item A variant of earliest deadline first scheduling that limits the impact
     of deadline violations on other requests.
     \myv
-  \item A tunable admission control system that bound the percentage of
+  \item A tunable admission control system that bounds the percentage of
     requests missing their deadlines.
   \end{itemize}
 \end{frame}
