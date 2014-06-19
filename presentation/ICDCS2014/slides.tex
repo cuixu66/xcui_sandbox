@@ -18,13 +18,25 @@
 \newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 \makeatother
 
-
 % shows how to change default (blue) colours in the default beamer theme
 % found here: http://joerglenhard.wordpress.com/tag/latex/
 \definecolor{WaterlooRed}{RGB}{145,11,46}
 \setbeamercolor{title}{fg=WaterlooRed}
 \setbeamercolor{frametitle}{fg=WaterlooRed}
 \setbeamercolor{structure}{fg=WaterlooRed}
+
+% Added line numbers in footnote
+% source: http://tex.stackexchange.com/questions/137022/how-to-insert-page-number-in-beamer-navigation-bars
+\addtobeamertemplate{navigation symbols}{}{%
+  \usebeamerfont{footline}%
+  \usebeamercolor[fg]{footline}%
+  \hspace{1em}%
+  \insertframenumber%/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=WaterlooRed}
+% end of added line numbers in footnote
+
+
 
 % adds logo in the footer
 \logo{\includegraphics[scale=.25]{img/csuow}}
@@ -630,7 +642,7 @@
 
 
 \begin{frame}
-  \frametitle{Deadline-Aware Caching with DLC}
+  \frametitle{Deadline-Aware Caching with DLC vs Memcached}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
@@ -641,7 +653,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Deadline-Aware Caching with DLC and DLS}
+  \frametitle{Deadline-Aware Caching with DLC and DLS vs Memcached}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/cache_48.png}}
@@ -651,20 +663,20 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Deadline Miss Rate with DLC}
-  \begin{figure}[t]
-    \begin{center}
-      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
-      \caption{Deadline miss rate for 192 concurrent clients with DLC and Memcached.}
-      \label{fig:miss_192_cs_mm}
-    \end{center}
-  \end{figure}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Deadline Miss Rate with DLC}
+  %% \begin{figure}[t]
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
+      %% \caption{Deadline miss rate for 192 concurrent clients with DLC and Memcached.}
+      %% \label{fig:miss_192_cs_mm}
+    %% \end{center}
+  %% \end{figure}
+%% \end{frame}
 
 
 \begin{frame}
-  \frametitle{Deadline Miss Rate with DLC and DLS}
+  \frametitle{MicroFuge Deadline Miss Rate vs Memcached}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/miss_48.png}}
@@ -709,7 +721,7 @@
 
 
 \begin{frame}
-  \frametitle{Experimental Results - Deadline Miss 3}
+  \frametitle{Experimental Results - Deadline Miss with Admission Control}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_AC_MM/miss_48.png}}
