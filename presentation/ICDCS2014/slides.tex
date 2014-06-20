@@ -42,14 +42,13 @@
 \logo{\includegraphics[scale=.25]{img/csuow}}
 
 \title[]{MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems}
-\author[Akshay Singh, Xu Cui, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee]{Akshay Singh, \textbf{Xu Cui}, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee}
+\author[Akshay Singh, Xu Cui, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee]{Akshay Singh,   \textcolor{WaterlooRed}{\textbf{Xu Cui}}, Benjamin Cassell, Bernard Wong and Khuzaima Daudjee}
 \institute{\includegraphics[scale=0.25]{img/UniversityOfWaterloo_logo_vert_rgb.png}}
 \date{{\tiny\today}}
 
 
 % my macros
 \newcommand{\myv}{\vspace{3 mm}}
-
 
 \begin{document}
 
@@ -124,9 +123,9 @@
   \item A distributed caching and scheduling middleware that provides
     performance isolation.
     \myv
-  \begin{itemize}
-  \item \textbf{Deadline Cache (DLC)}
-    \myv
+    \begin{itemize}
+    \item \textbf{Deadline Cache (DLC)}
+      \myv
       \begin{itemize}
       \item Builds a performance model of the system.
         \myv
@@ -143,23 +142,9 @@
         %% \item {\textcolor[gray]{0.5} {Optionally performs admission control.}}
       \item Optionally performs admission control.
       \end{itemize}
-  \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Middleware Approach}
-  \begin{itemize}
-    \item Difficult to support numerous cloud storage systems.
-      \myv
-    \item Memcached - A popular middleware.
-      \begin{itemize}
-        \myv
-      \item Reduces response times.
-        \myv
-      \item Deadline oblivious - does not distinguish different response time
-        requirements.
-      \end{itemize}
+    \end{itemize}
+    \myv
+  \item Middleware approach - to support different cloud storage systems.
   \end{itemize}
 \end{frame}
 
@@ -376,8 +361,7 @@
 \begin{frame}
   \frametitle{DLS - An Example (1)}
   \begin{itemize}
-  \item The client wants to perform a value lookup for the key UW.
-    \newline
+  \item The client wants to perform a value lookup for the key Waterloo.
   \end{itemize}
   \begin{figure}
     \begin{center}
@@ -589,6 +573,7 @@
 
 \begin{frame}
   \frametitle{DLS - Benefits}
+  % xcuiTODO: Make summary smaller June 20th
   \begin{itemize}
   \item A load-balancing system that directs each client to the server that is
     most likely to meet each request's deadline.
@@ -658,19 +643,19 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Deadline-Aware Caching (1)}
-  \begin{figure}[t]
-    \begin{center}
-      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
-      \caption{Cache hit rate for 192 concurrent clients with DLC and Memcached.}
-      \label{fig:cache_192_cs_mm}
-    \end{center}
-  \end{figure}
-\end{frame}
+%% \begin{frame}
+  %% \frametitle{Deadline-Aware Caching (1)}
+  %% \begin{figure}[t]
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
+      %% \caption{Cache hit rate for 192 concurrent clients with DLC and Memcached.}
+      %% \label{fig:cache_192_cs_mm}
+    %% \end{center}
+  %% \end{figure}
+%% \end{frame}
 
 \begin{frame}
-  \frametitle{Deadline-Aware Caching (2)}
+  \frametitle{Deadline-Aware Caching}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/cache_48.png}}
@@ -680,16 +665,16 @@
   \end{figure}
 \end{frame}
 
-%% \begin{frame}
-  %% \frametitle{Deadline Miss Rate with DLC}
-  %% \begin{figure}[t]
-    %% \begin{center}
-      %% \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
-      %% \caption{Deadline miss rate for 192 concurrent clients with DLC and Memcached.}
-      %% \label{fig:miss_192_cs_mm}
-    %% \end{center}
-  %% \end{figure}
-%% \end{frame}
+\begin{frame}
+  \frametitle{Deadline Miss Rate with DLC}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
+      \caption{Deadline miss rate for 192 concurrent clients with DLC and Memcached.}
+      \label{fig:miss_192_cs_mm}
+    \end{center}
+  \end{figure}
+\end{frame}
 
 
 \begin{frame}
@@ -712,8 +697,9 @@
   \item MicroFuge tackles the performance isolation problem with its
     deadline-aware caching and scheduling middleware.
     \myv
-  \item MicroFuge reduces deadline miss rate from over 20\% to
-    less than 5\%.
+
+  \item MicroFuge reduces deadline miss rate from over 20\% to less than 10\%
+    and it can be as low as 5\% if we turn on the admission control.
   \end{itemize}
 \end{frame}
 
@@ -726,9 +712,8 @@
   \item MicroFuge tackles the performance isolation problem with its
     deadline-aware caching and scheduling middleware.
     \myv
-  \item MicroFuge reduces deadline miss rate from over 20\% to
-    less than 5\%.
-    \myv
+  \item MicroFuge reduces deadline miss rate from over 20\% to less than 10\%
+    and it can be as low as 5\% if we turn on the admission control.  \myv
   \item \textbf{Thank you!}
   \end{itemize}
 \end{frame}
