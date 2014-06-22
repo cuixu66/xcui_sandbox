@@ -575,14 +575,17 @@
   \frametitle{DLS - Benefits}
   % xcuiTODO: Make summary smaller June 20th
   \begin{itemize}
-  \item A load-balancing system that directs each client to the server that is
-    most likely to meet each request's deadline.
+  %% \item A load-balancing system that directs each client to the server that is
+    %% most likely to meet each request's deadline.
+  \item Deadline-aware load-balancing.
     \myv
-  \item A variant of earliest deadline first scheduling that limits the impact
-    of deadline violations on other requests.
+  %% \item A variant of earliest deadline first scheduling that limits the impact
+    %% of deadline violations on other requests.
+  \item A variant of earliest deadline first scheduling.
     \myv
-  \item A tunable admission control system that bounds the percentage of
-    requests missing their deadlines.
+  %% \item A tunable admission control system that bounds the percentage of
+    %% requests missing their deadlines.
+  \item Tunable admission control system.
   \end{itemize}
 \end{frame}
 
@@ -697,7 +700,6 @@
   \item MicroFuge tackles the performance isolation problem with its
     deadline-aware caching and scheduling middleware.
     \myv
-
   \item MicroFuge reduces deadline miss rate from over 20\% to less than 10\%
     and it can be as low as 5\% if we turn on the admission control.
   \end{itemize}
