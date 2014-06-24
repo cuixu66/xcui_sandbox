@@ -63,6 +63,8 @@
     \item Cloud computing allows sharing of resource at the cost of reduced isolation.
       \newline
     \item Storage systems are highly sensitive to performance interference.
+      \newline
+    \item \(\text{Lack of performance isolation} \rightarrow \text{Unpredictable latencies.}\)
     \end{itemize}
 \end{frame}
 
@@ -112,7 +114,7 @@
       \item We represent response time requirements with \textbf{request deadlines}.
       \end{itemize}
       \myv
-    \item \(\text{Meeting request deadlines} \rightarrow \text{Performance Isolation.}\)
+    \item \(\text{Meeting request deadlines} \rightarrow \text{Performance isolation.}\)
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -144,7 +146,7 @@
       \end{itemize}
     \end{itemize}
     \myv
-  \item Middleware approach - to support different cloud storage systems.
+  \item Middleware: supports different cloud storage systems.
   \end{itemize}
 \end{frame}
 
@@ -161,17 +163,17 @@
   %% \textcolor[gray]{0.5}{of} \textcolor[gray]{0.8}{grey}.
 %% \end{frame}
 
-\begin{frame}
-  \frametitle{MicroFuge Overview (1)}
+%% \begin{frame}
+  %% \frametitle{MicroFuge Overview (1)}
   %% \vspace{-5 mm}
-  \begin{center}
+  %% \begin{center}
     %% \includegraphics[scale=0.33]{img/MF_FULL_NEW_1.png}
-    \includegraphics[scale=0.39]{img/MF_FULL_V8_1.png}
-  \end{center}
-\end{frame}
+    %% \includegraphics[scale=0.39]{img/MF_FULL_V8_1.png}
+  %% \end{center}
+%% \end{frame}
 
 \begin{frame}
-  \frametitle{MicroFuge Overview (2)}
+  \frametitle{MicroFuge Overview \rom{1}}
   %% \vspace{-5 mm}
   \begin{center}
     %% \includegraphics[scale=0.33]{img/MF_FULL_NEW_2.png}
@@ -180,7 +182,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{MicroFuge Overview (3)}
+  \frametitle{MicroFuge Overview \rom{2}}
   %% \vspace{-5 mm}
   \begin{center}
     \includegraphics[scale=0.39]{img/MF_FULL_V8_3.png}
@@ -188,7 +190,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{MicroFuge Overview (4)}
+  \frametitle{MicroFuge Overview \rom{3}}
   %% \vspace{-5 mm}
   \begin{center}
     \includegraphics[scale=0.39]{img/MF_FULL_V8_4.png}
@@ -206,7 +208,6 @@
     \end{center}
   \end{figure}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Deadline Cache (DLC) - Components}
@@ -345,18 +346,55 @@
 \end{frame}
 
 
+%% \begin{frame}
+  %% \frametitle{Deadline Scheduler (DLS) High-level Architecture}
+  %% \begin{itemize}
+  %% \item Scheduler is responsible for controlling access to
+    %% data-server.
+  %% \end{itemize}
+  %% \begin{figure}
+    %% \begin{center}
+      %% \centerline{\includegraphics[scale=0.90]{img/DLS.png}}
+    %% \end{center}
+  %% \end{figure}
+%% \end{frame}
+
 \begin{frame}
-  \frametitle{Deadline Scheduler (DLS) High-level Architecture}
-  \begin{itemize}
-  \item Scheduler is responsible for controlling access to
-    data-server.
-  \end{itemize}
+  \frametitle{Deadline Scheduler (DLS) High-level Architecture \rom{1}}
   \begin{figure}
     \begin{center}
-      \centerline{\includegraphics[scale=0.90]{img/DLS.png}}
+      \centerline{\includegraphics[scale=0.44]{img/DLS_ARCH_1.png}}
     \end{center}
   \end{figure}
 \end{frame}
+\begin{frame}
+  \frametitle{Deadline Scheduler (DLS) High-level Architecture \rom{2}}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.44]{img/DLS_ARCH_2.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+\begin{frame}
+  \frametitle{Deadline Scheduler (DLS) High-level Architecture \rom{3}}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.44]{img/DLS_ARCH_3.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+\begin{frame}
+  \frametitle{Deadline Scheduler (DLS) High-level Architecture \rom{4}}
+  \begin{figure}
+    \begin{center}
+      \centerline{\includegraphics[scale=0.44]{img/DLS_ARCH_4.png}}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
+
+
 
 \begin{frame}
   \frametitle{DLS - An Example (1)}
@@ -440,8 +478,10 @@
 \begin{frame}
   \frametitle{DLS - An Example (7)}
   \begin{itemize}
-  \item Let's zoom in to look at the requests waiting to be served by the data
-    server inside scheduler's pending queue.
+  %% \item Let's look at how requests are scheduled inside scheduler's pending
+    %% queue.
+  \item A snapshot of scheduler's pending queue.
+    \newline
     \newline
   \end{itemize}
   \vspace{-5 mm}
@@ -547,7 +587,7 @@
 \begin{frame}
   \frametitle{DLS - An Example (14)}
   \begin{itemize}
-  \item The clients issues the read request to the data server.
+  \item The client issues the read request to the data server.
 \newline
   \end{itemize}
   \begin{figure}
@@ -623,8 +663,8 @@
 \begin{frame}
   \frametitle{Experimental Setup - Details}
   \begin{itemize}
-  \item DataServer - Simple key-value store that uses leveldb with a
-    replication factor of 3.
+  \item DataServer - Simple key-value store that uses leveldb.
+  \item We use a replication factor of 3.
   \item Benchmarking System - Modified version of Yahoo! Cloud Serving
     Benchmark (YCSB).
     \begin{itemize}
@@ -639,26 +679,26 @@
       \end{tabular}
       %% \end{center}
     \end{itemize}
-  \item Data Set - Key-value store with 80 million records, 86.4 GB in size.
+  \item Data Set - 80 million records, 86.4 GB in size.
   \item Cache - Total capacity of 19.2GB.
   \end{itemize}
   % NOTES: We selected one range of deadlines which looked reasonable to us.
 \end{frame}
 
 
-%% \begin{frame}
-  %% \frametitle{Deadline-Aware Caching (1)}
-  %% \begin{figure}[t]
-    %% \begin{center}
-      %% \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
-      %% \caption{Cache hit rate for 192 concurrent clients with DLC and Memcached.}
-      %% \label{fig:cache_192_cs_mm}
-    %% \end{center}
-  %% \end{figure}
-%% \end{frame}
+\begin{frame}
+  \frametitle{Deadline-Aware Caching - \textbf{DLC}}
+  \begin{figure}[t]
+    \begin{center}
+      \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/cache_48.png}}
+      \caption{Cache hit rate for 192 concurrent clients with DLC and Memcached.}
+      \label{fig:cache_192_cs_mm}
+    \end{center}
+  \end{figure}
+\end{frame}
 
 \begin{frame}
-  \frametitle{Deadline-Aware Caching}
+  \frametitle{Deadline-Aware Caching - \textbf{Full MicroFuge}}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/cache_48.png}}
@@ -669,7 +709,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Deadline Miss Rate with DLC}
+  \frametitle{Deadline Miss Rate - \textbf{DLC}}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_CS_MM/miss_48.png}}
@@ -681,7 +721,7 @@
 
 
 \begin{frame}
-  \frametitle{MicroFuge Deadline Miss Rate vs Memcached}
+  \frametitle{Deadline Miss Rate - \textbf{Full MicroFuge}}
   \begin{figure}[t]
     \begin{center}
       \centerline{\includegraphics[scale=0.5]{img/EC2/EC2_SH_MM/miss_48.png}}
@@ -700,26 +740,10 @@
   \item MicroFuge tackles the performance isolation problem with its
     deadline-aware caching and scheduling middleware.
     \myv
-  \item MicroFuge reduces deadline miss rate from over 20\% to less than 10\%
-    and it can be as low as 5\% if we turn on the admission control.
+  \item MicroFuge reduces deadline miss rate from 17.5\% to 7.7\% and it can be
+    as low as 4.7\% if we turn on the admission control.
   \end{itemize}
 \end{frame}
-
-
-\begin{frame}
-  \frametitle{Conclusion}
-  \begin{itemize}
-  \item Predictable performance is necessary in multi-tenant environments.
-    \myv
-  \item MicroFuge tackles the performance isolation problem with its
-    deadline-aware caching and scheduling middleware.
-    \myv
-  \item MicroFuge reduces deadline miss rate from over 20\% to less than 10\%
-    and it can be as low as 5\% if we turn on the admission control.  \myv
-  \item \textbf{Thank you!}
-  \end{itemize}
-\end{frame}
-
 
 \begin{frame}
   \centerline{Thank You.}
