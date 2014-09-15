@@ -128,13 +128,15 @@ hr.style-eight:after {
 }
 /* End of Special hr lines */
 
-.about_me, .projects, .publications, .teaching, .blogs{
+/* Adds margin to the bottom */
+.about_me, .projects, .publications, .teaching, .talks, .blogs{
     margin-bottom: 26px;
 /* The next line is very Useful to debug */
 /*border: 1px solid red;*/
 }
 
-.about_me, .projects, .publications, .teaching, .blogs, .contact_me{
+/* Border radius, make box shadow to have round angles */
+.about_me, .projects, .publications, .teaching, .talks, .blogs, .contact_me{
 
     /*-webkit-box-shadow: inset 0px 0px 30px 0px rgba(50, 50, 50, 0.15);
       -moz-box-shadow:    inset 0px 0px 30px 0px rgba(50, 50, 50, 0.15);
@@ -144,9 +146,9 @@ hr.style-eight:after {
     padding:15px;
 }
 
+/* box shadow */
 /* Same as next css, but this is in effect only when mouse is on top of that item*/
-
-.about_me:hover, .projects:hover, .publications:hover, .teaching:hover, .blogs:hover, .contact_me:hover{
+.about_me:hover, .projects:hover, .publications:hover, .teaching:hover, .talks:hover, .blogs:hover, .contact_me:hover{
     -webkit-box-shadow: inset 0px 0px 30px 0px rgba(50, 50, 50, 0.15);
     -moz-box-shadow:    inset 0px 0px 30px 0px rgba(50, 50, 50, 0.15);
     box-shadow:         inset 0px 0px 30px 0px rgba(50, 50, 50, 0.15);
@@ -160,14 +162,14 @@ hr.style-eight:after {
   }*/
 
 
-.about_me h2, .projects h2, .publications h2, .teaching h2, .blogs h2, .contact_me h2{
+.about_me h2, .projects h2, .publications h2, .teaching h2, .talks h2, .blogs h2, .contact_me h2{
     margin-bottom: 6px;
 }
 
-.publications_para {
+.list_style {
     padding-left: 20px;
 }
 
-.publications_para a:link{
+.list_style a:link{
     text-decoration: none;
 }
