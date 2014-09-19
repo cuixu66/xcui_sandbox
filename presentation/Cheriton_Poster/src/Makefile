@@ -1,4 +1,4 @@
-TEX=microfuge_poster
+TEX=MicroFuge_Poster
 OUT=out
 CMD=pdflatex -aux-directory=$(OUT) -output-directory=$(OUT)
 all:
