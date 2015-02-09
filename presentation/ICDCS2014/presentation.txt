@@ -1,0 +1,126 @@
+Hello, My name is Xu and I am going to present MicroFuge: A Middleware Approach
+to providing Performance Isolation in Cloud Storage Systems. This is joint work
+with Akshay Singh Benjamin Cassell Bernard Wong Khuzaima Daudjee.
+
+Cloud computing allows sharing which increases resource utilization that in
+turn reduces costs. However, with increased utilization there is also reduced
+isolation between tenants. This is especially problematic for cloud storage
+systems which are highly sensitive to performance interference. Since cloud
+storage is often the performance bottleneck in cloud application, a lack of
+performance isolation can lead to unpredictable application latencies.
+
+A single high latency request may be acceptable but each HTTP request may lead
+to a lot of DB lookups. Response time can add up quickly. Both Google
+and Amazon has reported that high latencies will drive customers away. For
+example, Amazon reported each 100s latency cost them 1% in sales and Google
+lost 20% search traffic due to half of a second delay.
+
+In order to provide latency guarantees in the shared environment, Performance
+Isolation is required. The simplest solution to performance isolation is to
+give tenant dedicated resources but this eliminates the most important benefit
+behind cloud computing which is cost reduction. In our work we focus on a more
+tractable approach. We provide performance isolation by meeting client
+requirement in spite of competing resources from other tenants. Clients provide
+request deadlines to our system and we provide performance isolation by meeting
+their deadlines.
+
+Our solution is called MicroFuge. In our system, we focus on the caching and
+scheduling layers to provide performance isolation. We find most existing
+caching systems are deadline oblivious while caching plays a huge role in
+reducing respone times. Our deadline cache preferentially retain entries in
+cache that will most significantly reduce deadline violation. It does this by
+building a performance model of the underlying storage system.
+
+We also discovered most schedulers only perform load-balancing using round
+robin or randomization. Instead our deadline scheduler selects the replica
+which is most likely to meet a client's deadline. After the selection, for each
+replica, it also performs feedback driven scheduling to manage client access.
+
+Despite the effors, there are cases where the server load just exceeds its
+capacity. Our scheduler additionaly provides an optional admission control
+mechanism which perform early rejection of requests which are likely to miss
+their deadlines so the client can make informed decisions.
+
+By implement both as middleware layers, MicroFuge supports a large number of
+systems which we believe will have a bigger impact than modifying a single
+cloud storage system.
+
+******* SHOULD I DELETE Page 6-9 altogether? ************
+First I want to show you how our system works with existing storage systems.
+With MicroFuge, the client needs to
+first contact MicroFuge, MicroFuge will either reply the client with the data
+retrieved from the cache or schedule the client to access the data server. When
+client is formed that it can access the data server, it will follow the
+standard procedure to fetch the data from the storage server. From the picture,
+we see that MicroFuge does not talk to the cloud storage directly. The
+decoupling allows easier adoption.
+******* End of SHOULD I DELETE Page 6-9 altogether? ************
+
+
+Let's first look at how DLC works.
+
+We partition request using different deadline ranges and assign a LRU queue for
+each partition. For each
+eviction MicroFuge needs to make a decision on which queue to evict from. In
+order to make this decision, each queue has a corresponding divisor. The
+divisor is a value capture the likelihood of a cache miss inside a queue will
+lead to a deadline violation. The divisor is updated according to client
+feedback.
+
+Let me illustrate how eviction works with an example.
+
+Page: 21: m2 is increased to reflect the important to keep queue 2's data in
+the cache in order to avoid deadline violation.
+
+
+If we serve everything from the cache, we can reduce a lot of deadline
+violations, but this is not always possible because we may not be able to fit
+all data into the memory. We need to perform PI in the scheduling layer as well
+so the scheduler can help when a cache miss is unavoidable. Scheduler is
+responsible for controlling access to data-server. The deadline schedule
+performs three tasks. The first one is called ticket provisioning. Each ticket
+represents a client's intention to fetch the data from the storage system. The
+scheduler will not only schedule the request using a variant of EDF but it will
+also select the replica which is most likely to meet request's deadline. In
+order to make the selection, it relies on the latency modeling component.
+
+Page 28: After receiving the ticket, the client will pick the one which is
+likely to meet its deadline.
+
+Page 31: The scheduler will check if the request can meet its deadline or not.
+
+Page 33: Pop the item if it is likely to meet its deadline. It is unlikely to
+meet its deadline, to avoid cascading effects of missed deadlines, we increase
+its deadline so it has minimum ...
+
+Before evaluation: To evaluate the effectiveness of MicroFuge.
+
+In evaluation: Scheduler ensures request with long deadlines can meet their
+deadlines even without fetching from the caching.
+
+
+
+
+
+
+--------- OLD
+Cloud computing allows sharing of resources to increase utilization and in turn
+it allows cloud provider to reduce costs. However, by allowing sharing you
+increase resource utilization at the costs of reduced performance
+performance. This is especially prolematic for storage systems which are highly
+sensitive to performance interference such as concurrent access from other
+tenants. The storage system is the performance bottleneck for many cloud-based
+services. Without performance isolation, cloud-based application may experience
+high and unpredictable latencies.
+
+
+
+In our work, we find that all of the caching
+systems we know of are deadline-oblivious while caching plays a huge role in
+reducing request response times. For example, a lot request with short
+deadlines must be served from the cache to in order to avoid deadline
+violations. Our deadline cache builds a performance model and use it to decide
+which item to evict.
+
+
+DLC builds a performance model and use it to decide which item to evict.

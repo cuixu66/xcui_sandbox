@@ -1,3 +1,9 @@
 tryouts
 *.pyc
 .DS_Store
+#for latex generated files
+*.aux
+*.bcf
+*.log
+*.out
+*.run.xml
