@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta http-equiv="Content-type" content="text/html" charset="utf-8">
+    <title>MicroFuge</title>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src='js/fancy.js' type='text/javascript'></script>
+  </head>
+
+  <body>
+    <div class='content'>
+      <div class='heading'>
+        <div style=" width:100%">
+          <img src="./img/microfuge_logo.png" style="margin:auto; display:block; margin-bottom: -20px"></img>
+          <h3>A Middleware that provides Performance Isolation in Cloud Storage Systems</h3>
+        </div>
+	<div class='nav' style="margin-top:20px">
+	  <ul>
+	    <li>[</li>
+	    <li>
+	      <a href="#about_me">About</a>
+	    </li>
+	    <li>
+	      <a href="#overview">System Overview</a>
+	    </li>
+	    <li>
+	      <a href="#publications">Publications</a>
+	    </li>
+            <li>
+	      <a href="#talks">Posters and Presentations</a>
+	    </li>
+            <li>
+	      <a href="#people">People</a>
+	    </li>
+	    <li>
+	      <a href="#contact_me">Contact Us</a>
+	    </li>
+	    <li>]</li>
+	  </ul>
+	</div>
+      </div>
+
+      <hr class='style-eight'>
+
+      <div class="about_me">
+	<a name="about_me"></a>
+	<h2>About</h2>
+	<p>
+          Cloud computing has significantly improved resource utilization by having multiple tenants share the same resources.
+          However, this reduces the isolation between tenants which may lead to inconsistent and unpredictable performance.
+          Providing predictable performance is particular important for cloud storage systems because they are often the performance bottlenecks for many cloud-based services.
+          <i><b>MicroFuge</b></i> is a distributed caching and scheduling middleware that provides perform isolation for cloud storage systems by meeting client requirement in spite of competing resources from other tenants.
+          Clients provide request deadlines to our system and MicroFuge provides performance isolation by meeting their deadlines.
+          MicroFuge addresses the problem by building an empirically-driven performance model of the underlying storage system based on measured data.
+          Using this model, MicroFuge reduces deadline misses through adaptive deadline-aware cache eviction, scheduling and load-balancing policies.
+          MicroFuge can also perform early rejection of requests that are unlikely to make their deadlines.
+	</p>
+      </div>
+
+      <div class="about_me">
+	<a name="overview"></a>
+	<h2>System Overview</h2>
+        <table bgcolor="#f6f6f6" style="padding:5px">
+          <tr>
+            <td>
+              <b>MicroFuge</b> provides performance isolation through two middleware components.
+              <div style="margin-left:20px">Deadline Cache (<b>DLC</b>)</div>
+              <ul style="margin-left:50px">
+                <li>Builds a performance model</li>
+                <li>Uses multiple LRU queues for deadline-aware evictions</li>
+              </ul>
+              <div style="margin-left:20px">Deadline Schedule (<b>DLS</b>)</div>
+              <ul style="margin-left: 50px">
+                <li>Performs intelligent replica selection.</li>
+                <li>Implements feedback-driven deadline-aware scheduling.</li>
+                <li>Optionally performs admission control.</li>
+              </ul>
+            </td>
+            <td style="width:50%;align:right">
+              <img src="img/MF_FULL_V8_4.png" style="width:100%;align:right">
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table bgcolor="#f6f6f6" style="padding:5px">
+          <tr>
+            <td style="width:50%;align:left">
+              <img src="img/DLC_ARC_2.png" style="width:95%;align:left">
+            </td>
+            <td style="width:100%;align:right">
+              <b>DLC</b> offers adaptive deadline-aware caching
+              <ul style="margin-left:50px">
+                <li>Multiple LRU queues enable DLC to perform deadline-aware evictions.</li>
+                <li>Uses Each eviction victim is selected by computing the <i>Modified Recency Value</i></li>
+                <img src="img/DLC_formula_for_web.png" style="width:90%;margin-top:-10px;margin-bottom:-10px">
+              </ul>
+              <ul>
+                <b>DLC</b> uses an adaptive policy that considers both the client request rate for each deadline range and the underlying system’s performance to update the adaptive divisors.
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table bgcolor="#f6f6f6" style="padding:5px">
+          <tr>
+            <td>
+              With MicroFuge’s distributed design, each <b>DLS</b>
+              is responsible for scheduling client access to a
+              subset of distributed data servers. Each scheduler
+              performs three tasks to provide performance
+              isolation in the scheduling layer.
+              <ul style="margin-left:50px">
+                <li><b>DLS</b> will select the replica which is most
+                  likely to meet request’s deadline.</li>
+                <li>In order to make the selection, <b>DLS</b> relies
+                  on the latency modeling component which
+                  uses previous request latencies to predict
+                  incoming request’s latency</li>
+                <li>There are cases where server load just exceeds
+                  its capacity. <b>DLS</b> additionally provides
+                  an optional admission control mechanism
+                  which performs early rejection of requests
+                  which are likely to miss their deadlines.</li>
+              </ul>
+            </td>
+            <td style="width:50%;align:right">
+              <img src="img/DLS_ARCH_4.png" style="width:100%;align:right">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="publications">
+	<a name="publications"></a>
+	<h2>Publications</h2>
+	<div class='list_style'>
+	  <ul>
+	    <li>
+	      <b>
+		MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems.
+	      </b>
+	      <br>
+	      Akshay K. Singh, <b>Xu Cui</b>, Benjamin Cassell, Bernard Wong, and Khuzaima Daudjee.
+	      <br>
+	      In Proceedings of the <i>International Conference on Distributed Computing Systems (ICDCS),</i>
+	      <br>
+	      Madrid, Spain, July 2014. (Acceptance Rate: 13%).
+              <br>
+              [
+              <a href='../../pdf/MicroFuge.pdf'>
+                <b>PDF</b>
+              </a>
+              ]
+	    </li>
+	  </ul>
+	</div>
+      </div>
+
+      <div class="talks">
+	<a name="talks"></a>
+	<h2>Posters &amp; Presentations</h2>
+        <div class='list_style'>
+	  <ul>
+	    <li>
+	      Conference presentation at <i>The 34th International Conference on Distributed Computing Systems (ICDCS),</i>
+	      <br>
+	      Madrid, Spain, July 2014.
+              <br>
+              [
+              <a href='../../pdf/Draft_9_9.pdf'>
+                <b>Slides</b>
+              </a>
+              ]
+              <br>
+
+              <video width="480" controls>
+                <source src="../../video/talk_icdcs_2014.mp4" type="video/mp4">
+              </video>
+	    </li>
+	    <li>
+	      Poster presentation at <i>Cheriton Research Symposium</i>
+	      <br>
+	      Waterloo, Canada, September 2014.
+              <br>
+              [
+              <a href='../../pdf/MicroFuge_Poster.pdf'>
+                <b>Poster</b>
+              </a>
+              ]
+	    </li>
+
+	  </ul>
+        </div>
+      </div>
+
+      <div class="talks">
+	<a name="people"></a>
+	<h2>People</h2>
+        <div class="list_style">
+          <ul>
+            <li>Akshay K. Singh</li>
+            <li>Xu Cui</li>
+            <li>Benjamin Cassell</li>
+            <li>He Huang</li>
+            <li><a href="https://cs.uwaterloo.ca/~bernard/" target="_blank">Professor Bernard Wong</a></li>
+            <li><a href="https://cs.uwaterloo.ca/~kdaudjee/" target="_blank">Professor Khuzaima Daudjee</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contact_me">
+	<a name="contact_me"></a>
+	<h2>Contact Us</h2>
+	<p>
+	  bernard AT uwaterloo DOT ca
+	  <br>
+          kdaudjee AT uwaterloo DOT ca
+	</p>
+      </div>
+    </div>
+    <div id="footer" class="footer">
+      &copy; 2015 <a href="https://cs.uwaterloo.ca/~xcui/" style="text-decoration:none;">Xu Cui</a>
+    </div>
+  </body>
+</html>
