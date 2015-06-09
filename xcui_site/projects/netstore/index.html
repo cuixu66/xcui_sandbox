@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta http-equiv="Content-type" content="text/html" charset="utf-8">
+    <title>NetStore</title>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src='js/fancy.js' type='text/javascript'></script>
+  </head>
+
+  <body>
+    <div class='content'>
+      <div class='heading'>
+        <div style=" width:100%">
+          <img src="./img/netstore_logo.png" style="margin:auto; display:block; margin-bottom: -20px"></img>
+          <h3>A High Performance Network-Aware Transactional Key-Value Storage System</h3>
+        </div>
+	<div class='nav' style="margin-top:20px">
+	  <ul>
+	    <li>[</li>
+	    <li>
+	      <a href="#about_me">About</a>
+	    </li>
+	    <li>
+	      <a href="#overview">System Overview</a>
+	    </li>
+            <li>
+	      <a href="#people">People</a>
+	    </li>
+	    <li>
+	      <a href="#contact_me">Contact Us</a>
+	    </li>
+	    <li>]</li>
+	  </ul>
+	</div>
+      </div>
+
+      <hr class='style-eight'>
+
+      <div class="about_me">
+	<a name="about_me"></a>
+	<h2>About</h2>
+	<p>
+          With the increasing proliferation of big data, companies need to process terabytes of new data on a daily basis. To manage data at this scale, non-relational distributed databases have emerged over the past few years. Non-relational databases typically expose simple ‘get’ and ‘put’ operations and delegate query optimization to the application. This optimization is critical to reduce application response time. However, application level optimizations are hard to perform for distributed databases hosted within datacenters. Due to the shared nature of datacenters, applications do not have a global view or control of resources because of the virtualized environment. Another rapidly growing technology is Software defined networking (SDN). SDN enables us to perform network management and provisioning using a logically centralized controller.
+          <br>
+          <b>NetStore</b> is a combination of SDN with high performance non-relational databases. SDN naturally provides the required logically centralized controller that non-relational databases lack. On top of providing the controller, SDN also enables us to monitor and manage the network traffic, which is crucial for big data applications. NetStore is focused on combining SDN and non-relational databases to provide both the transactional properties from SQL databases as well as the performance benefits from Non-relational databases. The system consists of a SDN controller, a query scheduler and a distributed non-relational database. The SDN controller collects network states and manages network flows. The query scheduler sits on top of the SDN controller and schedules queries based on the current network conditions. Each query may optionally provide a response time requirement so the optimizer can make informed decisions to improve overall system performance using the hints provided by different queries. Such response time requirement may represent how urgent each request is within the application.
+	</p>
+      </div>
+
+      <div class="about_me">
+	<a name="overview"></a>
+	<h2>System Overview</h2>
+        <table bgcolor="#f6f6f6" style="padding:5px">
+          <tr>
+            <td>
+              The clients interact with <b>NetStore</b> using trasanctional APIs. The server receiving the query will act as the coordinator to perform the operations and return the result to the client. The coordinator server communicates with the controller using out-of-band network connections to offload traffic from the underlying network infrustracture that ships data. Each operation of a transaction query will be scheduled by the controller; the coordinator server will in turn perform the operations by retrieving the data from its local storage or other remote storages hosted by other servers.
+            </td>
+            <td style="width:50%;align:right">
+              <img src="img/sys_arch.png" style="width:100%;align:right">
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table bgcolor="#f6f6f6" style="padding:5px">
+          <tr>
+            <td style="width:50%;align:left">
+              <img src="img/network_arch.png" style="width:95%;align:left">
+            </td>
+            <td style="width:100%;align:right">
+              The core of <b>NetStore</b> is the controller which is built upon extensions to the Floodlight software-defined networking controller.
+              This centralized controller monitors various states of the system. The current focus of this project is to exploit the network aware property of SDN to improve queries response times. In particular, the SDN controller will keep track of how many flows are installed on each network link and use this information to determine when to execute each query. Initial experiment shows that NetStore can significantly improve the system performance by only considering the network states. However, NetStorage is not designed to only accomodate network bottlenecked situations but to also consider other factors such as CPU usage, power comsumption and any other system state. This work is in progress. Please stay tuned for updates in the near future.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="talks">
+	<a name="people"></a>
+	<h2>People</h2>
+        <div class="list_style">
+          <ul>
+            <li><a href="https://cs.uwaterloo.ca/~xcui/" target="_blank">Xu Cui</a></li>
+            <li><a href="http://michael.mior.ca/" target="_blank">Michael Mior</a></li>
+            <li><a href="https://cs.uwaterloo.ca/~bernard/" target="_blank">Professor Bernard Wong</a></li>
+            <li><a href="https://cs.uwaterloo.ca/~kdaudjee/" target="_blank">Professor Khuzaima Daudjee</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contact_me">
+	<a name="contact_me"></a>
+	<h2>Contact Us</h2>
+	<p>
+	  xcui AT uwaterloo DOT ca
+	</p>
+      </div>
+    </div>
+
+    <div id="footer" class="footer" style="margin-bottom:20px">
+      &copy; 2015 <a href="https://cs.uwaterloo.ca/~xcui/" style="text-decoration:none;">Xu Cui</a>
+      <span style="margin:0; padding:0" id="last_modified_at">
+      </span>
+    </div>
+  </body>
+</html>
