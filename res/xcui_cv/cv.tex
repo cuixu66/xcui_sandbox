@@ -25,6 +25,23 @@
 \usepackage{helvet} % Default font is the helvetica postscript font
 %% \usepackage{newcent} % To change the default font to the new century schoolbook postscript font uncomment this line and comment the one above
 
+\usepackage{url}
+
+% footer page number
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhf{}
+\fancyheadoffset{0cm}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+}
+% end of footer page number
+
 \newsectionwidth{0pt} % Stops section indenting
 
 \begin{document}
@@ -38,9 +55,19 @@
 \begingroup{
   \leavevmode\hbox to \textwidth{\hfil\@tablebox{\namefont{Xu Cui}}\hfil}\par
   \leavevmode\hbox to \textwidth{
-    \@tablebox{456}\hfil
-    \@tablebox{123}\hfil
-    \@tablebox{789}
+    \@tablebox{
+      % left address
+      {\bf Local Address} \\ Apt 911 - 137 University Ave. \\ Waterloo, ON. N2L 3E6 \\ (226)-989-1171
+    }\hfil
+    \@tablebox{
+      % middle information: used \hspace to make it look better
+      \\ \hspace{-5mm} \url{https://cs.uwaterloo.ca/~xcui/} \\
+      \hspace{7mm} xcui@uwaterloo.ca
+    }\hfil
+    \@tablebox{
+      % right address
+      {\bf Permanent Address} \\ 532 Kilbirnie Drive \\ Ottawa, ON. K2J 5R7 \\ (613)-565-0352
+    }
   }\par
 
 }\endgroup
@@ -52,76 +79,180 @@
 %	OBJECTIVE SECTION
 %----------------------------------------------------------------------------------------
 
-\section{\centerline{OBJECTIVE}}
+%% \section{\centerline{OBJECTIVE}}
+
+%% \vspace{8pt} % Gap between title and text
+
+%% A position in Personnel Administration utilizing skills in recruiting, training and compensation.\\
+
+
+%----------------------------------------------------------------------------------------
+%	Personal Summary SECTION
+%----------------------------------------------------------------------------------------
+
+\section{\centerline{Personal Summary}}
+
+\vspace{15pt} % Gap between title and text
+
+\begin{itemize} \itemsep -2pt % Reduce space between items
+\item I am a PhD Candidate at Cheriton School of Computer Science, University of Waterloo
+  under the supervision of Professor Bernard Wong and Professor Khuzaima Daudjee.
+\item My research interests include distributed systems, cloud storage systems and software-defined networks.
+\end{itemize}
+
+\vspace{0.2in} % Some whitespace between sections
+
+%----------------------------------------------------------------------------------------
+%	Summary OF Qualificiations SECTION
+%----------------------------------------------------------------------------------------
+
+\section{\centerline{Summary of Qualifications}}
+\vspace{15pt} % Gap between title and text
+
+\begin{itemize} \itemsep -2pt % Reduce space between items
+% year count started sing Sept 2011 where I worked with Professor Li Ming
+\item 5 years' experience in designing, implementing, evaluating and fine-tuning large scale software systems
+\item Strong leadership in project management; Strong analytical skills; years of expertise in problem solving
+\item Strong programming skills in C++, JavaScript, Python, Ruby, Racket, Java; expertise in MySQL, PostgreSQL and MongoDB; experience in Linux administration and Amazon Web Services
+\item Consistently recognized by supervisors/managers as a very systematic, competent and highly motivated individual
+\item Excellent verbal and written communication skills to achieve team goals; solid expertise in summarizing and presenting research to colleagues and supervisors; fluent reading and writing skills in English and Chinese
+\item Consistently able to deliver results under tight deadlines, highly motivated, and very systematic
+\end{itemize}
+
+\vspace{0.2in} % Some whitespace between sections
+
+%----------------------------------------------------------------------------------------
+%	Education SECTION
+%----------------------------------------------------------------------------------------
+
+\section{\centerline{Education}}
 
 \vspace{8pt} % Gap between title and text
 
-A position in Personnel Administration utilizing skills in recruiting, training and compensation.\\
+{\sl PhD, Computer Science} \\
+University of Waterloo, Waterloo, Ontario \hfill September 2013 -- present\\
+GPA: 94/100 \\
+Milestones completed: Comprehensive I, Januarary 2016.
 
-%----------------------------------------------------------------------------------------
-%	EDUCATION SECTION
-%----------------------------------------------------------------------------------------
+{\sl Master of Mathematics}, Computer Science  \\
+University of Waterloo, Waterloo, Ontario
+\hfill  October 2015\\
+Thesis ``Leveraging Software-Defined Networking to Improve Distributed Transaction Processing Performance'',
+October, 2015\\
+GPA 92/100
 
-\section{\centerline{EDUCATION}}
-
-\vspace{8pt} % Gap between title and text
-
-{\sl Master of Science},
-Industrial/Organizational Psychology \\
-Rensselaer Polytechnic Institute, Troy, NY \hfill December 1990 \\
-THESIS - Job Evaluation: Compensating for Comparable Worth \\
-GPA 3.70
-
-{\sl Bachelor of Science}, Psychology \\
-Utica College of Syracuse University, Utica, NY \hfill May 1987
-
-{\sl Bachelor of Science}, Psychology \\
-Utica College of Syracuse University, Utica, NY \hfill May 1987
+{\sl Bachelor of Computer Science}, with Distinction \\
+University of Waterloo, Waterloo, Ontario \hfill June 2013\\
+Major Average: 92/100
 
 %----------------------------------------------------------------------------------------
 
 \vspace{0.2in} % Some whitespace between sections
 
 %----------------------------------------------------------------------------------------
-%	PROFESSIONAL EXPERIENCE SECTION
+%	PUBLICATIONS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{\centerline{PROFESSIONAL EXPERIENCE}}
+\section{\centerline{Publications}}
+
+\vspace{15pt} % Gap between title and text
+\begin{itemize} \itemsep -2pt % Reduce space between items
+\item Akshay K. Singh, \textbf{Xu Cui}, Benjamin Cassell, Bernard Wong, and Khuzaima Daudjee, \textit{MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems.} In Proceedings of the International Conference on Distributed Computing Systems (ICDCS), Madrid, Spain, June 2014.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\vspace{0.2in} % Some whitespace between sections
+
+%----------------------------------------------------------------------------------------
+%	Technical Reports SECTION
+%----------------------------------------------------------------------------------------
+\section{\centerline{Technical Reports}}
+
+\vspace{15pt} % Gap between title and text
+\begin{itemize} \itemsep -2pt % Reduce space between items
+\item Sharon Choy, Bernard Wong, \textbf{Xu Cui}, and Xiaoyi Liu, \textit{CrossStitch: An Efficient Transaction
+  Processing Framework for Geo-Distributed Systems.} University of Waterloo, School of Computer Science Technical Report CS-2015-08, June 2015.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\vspace{0.2in} % Some whitespace between sections
+
+%----------------------------------------------------------------------------------------
+%	Presentations SECTION
+%----------------------------------------------------------------------------------------
+\section{\centerline{Presentations}}
+
+\vspace{15pt} % Gap between title and text
+\begin{itemize} \itemsep -2pt % Reduce space between items
+\item Poster Presentation of \textit{MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems} at Cheriton Research Symposium, Waterloo Canada, September 19, 2014.
+\item Conference Presentation of \textit{MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems} at the 34th International Conference on Distributed Computing Systems (ICDCS), Madrid Spain, July 2014.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\vspace{0.2in} % Some whitespace between sections
+
+%----------------------------------------------------------------------------------------
+%	Awards and Scholarships SECTION
+%----------------------------------------------------------------------------------------
+\section{\centerline{Awards and Scholarships}}
+\vspace{15pt} % Gap between title and text
+\begin{itemize} \itemsep -2pt % Reduce space between items
+\item 2016-2018 (expected). GO-bell Scholarship, University of Waterloo.
+  \hspace*{\fill} CAD 10,000/year
+\item 2015-2016. Ontario Graduate Scholarship.
+  \hspace*{\fill} CAD 15,000/year
+\item 2015-2016. President's Graduate Scholarship, University of Waterloo.
+  \hspace*{\fill} CAD 10,000/year
+\item 2013-2015. David R. Cheriton Graduate Scholarship, University of Waterloo.
+  \hspace*{\fill} CAD 10,000/year
+\item 2014. International Conference on Distributed Computing Systems Travel Grant.
+  \hfill USD 1,100
+
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\vspace{0.2in} % Some whitespace between sections
+
+%----------------------------------------------------------------------------------------
+%	Research Experience SECTION
+%----------------------------------------------------------------------------------------
+
+\section{\centerline{Research Experience}}
 
 \vspace{8pt} % Gap between title and text
 
-{\sl International Business Machines} \hfill January -- August 1990 \\
-General Products Division, Tucson, AZ \hfill (Co-op Assignment)
+{\sl Research Assistant} \\
+University of Waterloo, Waterloo, Ontario \hfill September 2013 -- present
 \begin{itemize} \itemsep -2pt % Reduce space between items
-\item Developed new selection criteria for applicant screening and selection at GPD Tucson. Conducted job analysis, wrote criteria, identified skill codes for applicant tracking, established rater reliability.
-\item Interviewed applicants for positions in Assembly, Warehousing, and Direct Customer Response.
-\item Assistant Co-op Coordinator. Initiated and maintained computer tracking for Co-op program. Organized all co-op seminars and activities, co-op directory.
-\item Representative on GPD Compensation Task Force. Prepared job descriptions, assigned corporate position code, and submitted for division approval.
+% year count starts in September 2013
+\item Contributed to four research projects, ShiftFit, NetStore, CrossStitch, and MicroFuge, as well a web application project DataMagic over a period of 2 years.
+\item Chief architecture for NetStore, a high performance network-aware distributed transaction processing system. NetStore leverages software-defined networking to improve transaction response times by as much as 77\% while doubling the throughput in event of high network utilization. Implemented about 10,000 lines of system code in C++ and Java in a period less than 8 months.
+\item Evaluated CrossStitch, a new transaction processing framework, by co-designing and co-implementing the TPC-C benchmark using the transaction interface provided by CrossStitch. Designed and deployed a fully automated testbed framework for CrossStitch.
+\item Led the DataMagic Project, a cloud based data analytics system which collects, analyzes and visualizes data available from public sectors (e.g. Police/Fire Departments, Hydro etc.). Designed and implemented the prototypes of the DataMagic system in three different programming languages with colleagues. Co-designed a set of RESTful APIs, which can provide unified, structured data to interested parties.
+\item Evaluated, designed and implemented the caching and scheduling algorithms of
+  MicroFuge, a middleware which provides performance isolation in cloud environments, which improved MicroFuge’s existing performance by more than 50\%. Drove the MicroFuge project at full speed to achieve both high performance and quality standards under a tight deadline.
+\item Acquired valuable experience in system evaluation and tuning techniques.
+\item In charge of the setups and fine-tuning of distributed development and testing
+  environments on various cloud platforms from different providers.
 \end{itemize}
 
-{\sl Rensselaer Polytechnic Institute, Troy, NY} \\[2pt]
-Professional Leadership Program, School of Management \hfill October 1988 -- March 1989
-\begin{itemize} \itemsep -2pt % Reduce space between items
-\item Developed standardized interview to identify early management potential. Generated leadership dimensions and applicant assessment scale.
-\item Completed 30 hours of interviewer training. Interviewed 75 candidates.
-\end{itemize}
 \vspace{-6pt} % Reduce space between positions at the same organization
-Department of Psychology \hfill May -- December 1989
-\begin{itemize}
-\item Trained engineering students in the development of interpersonal skills. Facilitated group interaction, provided individual feedback via application analysis papers.
-\end{itemize}
 
-{\sl New York State Department of Mental Health} \hfill September -- December 1989 \\
-Bureau of Management and Program Evaluation, Albany, NY
-\begin{itemize}
-\item Conducted research to identify key evaluation factors in the statewide investigation of Intensive Care Facilities for disabled persons.
-\end{itemize}
-
-{\sl Colonie Center Shopping Mall} \hfill January -- June 1989 \\ Albany, NY
+{\sl Undergraduate Research Assistant} \\[2pt]
+University of Waterloo, Waterloo, Ontario \hfill September 2011 -- April 2013
 \begin{itemize} \itemsep -2pt % Reduce space between items
-\item Served as consultant for new management team in techniques for managing change.
-\item Developed and administered organizational climate survey.
-\item Facilitated management-employee feedback sessions.
+\item Designed and implemented the fundamental natural language parsing engine of RSVP, a
+  Natural Language Processing Engine created to answer questions in natural languages.
+\item Engineered and built the data collection engine of RSVP used to provide structured data
+  in response to questions.
+\item Constructed and developed an Android Library for potential customers to utilize the
+  Natural Language Processing Engine.
+\item Gained experience in natural language processing techniques, data collection methods,
+  and database technologies.
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
@@ -132,26 +263,24 @@ Bureau of Management and Program Evaluation, Albany, NY
 %	COMPUTER SKILLS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{\centerline{COMPUTER SKILLS}}
+\section{\centerline{Teaching Experience}}
 
 \vspace{8pt} % Gap between title and text
-
-Experienced in SPSS, BMDP statistical packages; LOTUS 1-2-3, Personal Editor
-
-%----------------------------------------------------------------------------------------
-
-\vspace{0.2in} % Some whitespace between sections
-
-%----------------------------------------------------------------------------------------
-%	PUBLICATIONS SECTION
-%----------------------------------------------------------------------------------------
-
-\section{\centerline{PUBLICATIONS}}
-
-\vspace{15pt} % Gap between title and text
-\begin{itemize} \itemsep -2pt % Reduce space between items
-\item ``Job Analysis - A True Picture," Journal of Headhunters, Vol. 5, Number 3. Fall 1990
-\item ``The Fine Tuning of Interpersonal Skills," Journal of Recruiting/Hiring, Vol. 16, Number 7, August 1990
+{\sl Instructional Apprentice} for CS136 -- Elementary Algorithm Design and Data Abstraction \\
+University of Waterloo, Waterloo Ontario\hfill Winter 2014, Spring 2014, Fall 2014, and Winter 2015
+\begin{itemize} \itemsep -2pt
+\item Instruct weekly tutorial.
+\item Research and create tutorial material.
+\item Provide one to one help to students during office hours.
+\end{itemize}
+%% \vspace{-9pt}
+{\sl Teaching Assistant}
+\begin{itemize} \itemsep -2pt
+\item CS136 --  Elementary Algorithm Design and Data Abstraction  \hfill Winter 2014, Fall 2014
+\item CS230 -- Introduction to Computers and Computer Systems \hfill Fall 2013, Fall 2015
+\item CS241 -- Foundations of Sequential Programs \hfill Winter 2016
+\item CS350 -- Operating Systems \hfill Spring 2015
+\item CS454 -- Distributed Systems \hfill Spring 2015
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
@@ -159,38 +288,36 @@ Experienced in SPSS, BMDP statistical packages; LOTUS 1-2-3, Personal Editor
 \vspace{0.2in} % Some whitespace between sections
 
 %----------------------------------------------------------------------------------------
-%	MEMBERSHIPS SECTION
+%	Volunteer Experience SECTION
 %----------------------------------------------------------------------------------------
 
-\section{\centerline{MEMBERSHIPS}}
+\section{\centerline{Volunteer Experience}}
 
-\vspace{-5pt} % Reduce space between section title and contents
+\vspace{15pt} % Reduce space between section title and contents
 
-\begin{center}
-American Psychological Association, Student Affiliate \\
-Vice President of Activities, RPI Weight-training Club \\
-Chairperson, Entertainment Committee, Utica College \\
-Latin-American Student Union, Utica College \\
-Member All-American Nautilus
-\end{center}
+\begin{itemize} \itemsep -2pt
+\item Exploiting Text Workshop Volunteer, Waterloo Canada \hfill August 2014.
+\item Poster Presentation Volunteer during the CS4U day, Waterloo Canada \hfill December 2015.
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 
 \vspace{0.2in} % Some whitespace between sections
 
 %----------------------------------------------------------------------------------------
-%	HONORS SECTION
+%	Services SECTION
 %----------------------------------------------------------------------------------------
 
-\section{\centerline{HONORS}}
+\section{\centerline{Services}}
 
-\vspace{-5pt} % Reduce space between section title and contents
+\vspace{15pt} % Reduce space between section title and contents
 
-\begin{center}
-Full tuition assistantship, Rensselaer Polytechnic Institute \\
-PSI CHI National Honor Society \\
-PHI THETA KAPPA National Honor Society
-\end{center}
+\begin{itemize} \itemsep -2pt
+\item External Reviewer, ACM Symposium on Cloud Computing, SoCC, 2015.
+\item External Reviewer, IEEE International Conference on Distributed Computing Systems, ICDCS, 2015.
+\item External Reviewer, International Conference on Database Systems for Advanced Applications, DASFAA 2014.
+\item External Reviewer, European Conference on Computer Systems, EuroSys, 2014.
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 
@@ -205,7 +332,7 @@ PHI THETA KAPPA National Honor Society
 \vspace{-5pt} % Reduce space between section title and contents
 
 \begin{center}
-Classical piano, jazz, bodybuilding/aerobic exercise, cooking, dancing
+cooking, spending time with my family, reading, mountain climbing
 \end{center}
 
 %----------------------------------------------------------------------------------------
