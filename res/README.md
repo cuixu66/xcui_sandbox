@@ -1,10 +1,20 @@
+Update on Jan 18th, 2016:
+directory "xcui_cv" contains the latest cv.
+The old fancy ones are temporarily abandoned.
+The latest cv template is fetched from:
+http://www.latextemplates.com/template/long-professional-curriculum-vitae
+
+
+-------------
+Old:
+
 Found a very nice look Resume template at:
 http://www.latextemplates.com/cat/curricula-vitae
 
 Namely, the Friggeri Resume/CV template.
 However I find it requires font family which is not free.
 
-A little bit more search revealed a templcate called Fancy CV:
+A little bit more search revealed a template called Fancy CV:
 
 https://www.sharelatex.com/templates/cv-or-resume/fancy-cv
 
