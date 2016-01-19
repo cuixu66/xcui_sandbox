@@ -1,4 +1,4 @@
-TEX=cv
+TEX=xcui_cv
 OUT=out
 CMD=pdflatex -aux-directory=$(OUT) -output-directory=$(OUT)
 all:
