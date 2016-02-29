@@ -1,3 +1,8 @@
+Update on Feb, 29th, 2016:
+Resumes, in my email boxes, are just duplicate copies of my CV, in xcui_cv, except where the resume has a job objective.
+Therefore, the MY_RESUME email chain in my email box is useless now.
+All the CV updates, fetches should be to or from the directory xcui_cv.
+
 Update on Jan 18th, 2016:
 directory "xcui_cv" contains the latest cv.
 The old fancy ones are temporarily abandoned.
