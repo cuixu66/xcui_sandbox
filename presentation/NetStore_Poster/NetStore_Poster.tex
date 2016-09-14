@@ -110,7 +110,7 @@ linewidth=2pt % Width of the border lines around content boxes
 \myv
 \begin{itemize}
 \item The volume of data we generate has increased exponentially in the past decade.
-\item We need distributed storage systems that store data across multiple servers.
+\item We need distributed storage systems to store data across multiple servers.
 \item This makes the network a potential performance bottleneck.
 \item Cloud tenants cannot control the cloud network.
 \item Application level optimizations rely only on static information (i.e. fetch data from a nearby server)
@@ -178,9 +178,9 @@ A network-aware transaction processing system which applies three optimization t
     \textbf{OLR} is a database layer optimization that effectively reduces the load on network links.
   %% \myv \myv \myv
   \begin{itemize}\compresslist
-  \item OLR takes the advantage of read operation results by creating temporary replicas
-  \item Avoids complex cache eviction implementations
-  \item Avoids communication costs for cache invalidation
+  \item OLR takes the advantage of read operation results by creating temporary replicas.
+  \item Avoids complex cache eviction implementations.
+  \item Avoids communication costs for cache invalidation.
   \end{itemize}
   \vfill
   \columnbreak
@@ -215,10 +215,10 @@ A network-aware transaction processing system which applies three optimization t
 }
 
 \headerbox{Earliest Expected Job First}{name=eejf, column=3, span=1,  below=lbp, bottomaligned=background}{
-  \textbf{EEJF} is designed to delay the new flows that traverse congested links.
+  \textbf{EEJF} is designed to delay the new flows that may traverse congested links.
   \begin{itemize}\compresslist
-  \item We built a network-aware performance model of the underlying system
-  \item Uses this model to predict the expected completion time of a transaction
+  \item We built a network-aware performance model of the underlying system.
+  \item Uses this model to predict the expected completion time of a transaction.
   \item Orders the transactions using this expected completion time.
   \end{itemize}
 }
@@ -226,7 +226,7 @@ A network-aware transaction processing system which applies three optimization t
 \headerbox{Performance Evaluation}{name=performance, column=0, span=3,below=background, above=bottom}{
   \begin{multicols}{4}
     \begin{itemize}\compresslist
-    \item We use Mininet in a 9-node cluster to emulate a multi-rooted tree topology with 1Gbps links with a total of 64 virtual servers.
+    \item We use Mininet in a 9-node cluster to emulate a multi-rooted tree topology with 1Gbps links and with a total of 64 virtual servers.
     \item We use a modified version of the RUBiS benchmark to evaluate NetStore against the Equal-Cost Multi-Path (ECMP) routing algorithm.
     \end{itemize}
     \begin{center}
