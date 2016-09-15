@@ -95,7 +95,7 @@ linewidth=2pt % Width of the border lines around content boxes
 %% {\includegraphics[height=10em]{img/UniversityOfWaterloo_logo_vert_rgb.png}} % First university/lab logo on the left
 {\includegraphics[height=7.5em]{img/Cheriton_Logo.pdf}} % First university/lab logo on the left
 {\bf\textsc\small{NetStore: Leveraging Network Optimizations to Improve Distributed Transaction Processing Performance}\vspace{0.1em}} % Poster title
-{\vspace{1mm}
+{\vspace{0mm}
 \fontfamily{phv}\selectfont\textsc{{\textbf{\underline{Xu Cui}}, Michael Mior, Supervisors: Bernard Wong,
     Khuzaima Daudjee} \\ \fontfamily{ptm}\selectfont{David R. Cheriton School of Computer Science}}} % Author names and institution
 %% {\includegraphics[height=4em]{logo.png}} % Second university/lab logo on the right
@@ -113,7 +113,7 @@ linewidth=2pt % Width of the border lines around content boxes
 \item Distributed storage systems are needed to store data across multiple servers.
 \item The network can become a performance bottleneck.
 \item Cloud tenants cannot control the cloud network.
-\item Application level optimizations rely only on static information (i.e. fetch data from a nearby server)
+\item Application level optimizations rely only on static information (i.e. fetch data from a nearby server).
 \end{itemize}
 
 \textbf{A Datacenter Network}
@@ -179,9 +179,9 @@ A network-aware transaction processing system which applies three optimization t
     \textbf{OLR} is a database layer optimization that effectively reduces the load on network links.
   %% \myv \myv \myv
   \begin{itemize}\compresslist
-  \item OLR takes the advantage of read operation results by creating temporary replicas.
-  \item Avoids complex cache eviction implementations.
-  \item Avoids communication costs for cache invalidation.
+  \item \textbf{OLR} takes the advantage of read operation results by creating temporary replicas.
+  \item \textbf{OLR} avoids complex cache eviction implementations.
+  \item \textbf{OLR} avoids communication costs for cache invalidation.
   \end{itemize}
   \vfill
   \columnbreak
@@ -216,11 +216,12 @@ A network-aware transaction processing system which applies three optimization t
 }
 
 \headerbox{Earliest Expected Job First}{name=eejf, column=3, span=1,  below=lbp, bottomaligned=background}{
-  \textbf{EEJF} is designed to delay the new flows that may traverse congested links.
+  \textbf{EEJF} is designed to delay new flows that may traverse congested links.
+  \vspace{-0.5em}
   \begin{itemize}\compresslist
-  \item \textbf{EEJF} utilizes a network-aware performance model of the underlying system.
+  \item The NetStore controller maintains a network-aware performance model of the underlying system.
   \item \textbf{EEJF} uses this model to predict the expected completion time of a transaction.
-  \item Orders transactions using this expected completion time.
+  \item \textbf{EEJF} orders transactions using this expected completion time.
   \end{itemize}
 }
 
@@ -229,7 +230,7 @@ A network-aware transaction processing system which applies three optimization t
     \begin{itemize}\compresslist
     \item Mininet is used in a 9-node cluster to emulate a multi-rooted tree topology with 1Gbps links.
     \item There are a total of eight Top-of-Rack switches and each is connected to eight virtual servers.
-    \item A modified version of the RUBiS benchmark is utilized to evaluate NetStore.
+    \item A modified version of the RUBiS benchmark is deployed to evaluate NetStore.
     \item Equal-Cost Multi-Path (ECMP) routing is used
       as a baseline for comparison.
 
