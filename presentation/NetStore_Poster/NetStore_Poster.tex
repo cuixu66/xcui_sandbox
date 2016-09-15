@@ -95,9 +95,9 @@ linewidth=2pt % Width of the border lines around content boxes
 %% {\includegraphics[height=10em]{img/UniversityOfWaterloo_logo_vert_rgb.png}} % First university/lab logo on the left
 {\includegraphics[height=7.5em]{img/Cheriton_Logo.pdf}} % First university/lab logo on the left
 {\bf\textsc\small{NetStore: Leveraging Network Optimizations to Improve Distributed Transaction Processing Performance}\vspace{0.1em}} % Poster title
-{\vspace{-2mm}
-\fontfamily{pzc}\selectfont\textsc{{\huge\textbf{\underline{Xu Cui}}, Michael Mior, Supervisors: Bernard Wong,
-    Khuzaima Daudjee} \\ \fontfamily{ccr}\selectfont{David R. Cheriton School of Computer Science}}} % Author names and institution
+{\vspace{1mm}
+\fontfamily{phv}\selectfont\textsc{{\textbf{\underline{Xu Cui}}, Michael Mior, Supervisors: Bernard Wong,
+    Khuzaima Daudjee} \\ \fontfamily{ptm}\selectfont{David R. Cheriton School of Computer Science}}} % Author names and institution
 %% {\includegraphics[height=4em]{logo.png}} % Second university/lab logo on the right
 
 %----------------------------------------------------------------------------------------
@@ -111,17 +111,18 @@ linewidth=2pt % Width of the border lines around content boxes
 \begin{itemize}
 \item The volume of data generated has increased exponentially in the past decade.
 \item Distributed storage systems are needed to store data across multiple servers.
-\item This makes the network a potential performance bottleneck.
+\item The network can become a performance bottleneck.
 \item Cloud tenants cannot control the cloud network.
 \item Application level optimizations rely only on static information (i.e. fetch data from a nearby server)
 \end{itemize}
 
 \textbf{A Datacenter Network}
 \begin{center}
-  \includegraphics[scale=0.130]{img/network_arch_withOUT_pod.pdf}
-  \captionof{figure}{System Overview}
+  \includegraphics[scale=0.190]{img/exp_setup.pdf}
+  \captionof{figure}{Multi-Rooted Tree Topology}
 \end{center}
 \begin{itemize}
+  \vspace{-1.5em}
 \item Multiple unique paths between pairs of servers.
 \item Part of the network may become congested for a period of time.
 \end{itemize}
@@ -187,14 +188,14 @@ A network-aware transaction processing system which applies three optimization t
   \hspace{1.0em}
   \begin{center}
     \includegraphics[scale=0.18]{img/OLR_example_1.pdf}
-    \captionof{figure}{An OLR Example Part I}
+    \captionof{figure}{OLR Example Part I}
   \end{center}
   \vfill
   \columnbreak
   \hspace{2.5em}
   \begin{center}
     \includegraphics[scale=0.16]{img/OLR_example_2.pdf}
-    \captionof{figure}{An OLR Example Part II}
+    \captionof{figure}{OLR Example Part II}
   \end{center}
 \end{multicols}
 }
@@ -203,48 +204,56 @@ A network-aware transaction processing system which applies three optimization t
   \textbf{LBP} offers network-aware path selection.
   \myv \myv \myv
   \begin{itemize}\compresslist
-  \item The NetStore controller has the global view of the network.
-  \item We use dynamic flow count information on each link to compute bandwidth allocation for each new flow.
-  \item \textbf{LBP} Makes informed routing decisions based on dynamic flow information.
+  \item The NetStore controller has global view of the network.
+  \item \textbf{LBP} exploits dynamic flow count information on each link to compute bandwidth allocation for each new flow.
+  \item \textbf{LBP} makes informed routing decisions based on dynamic flow information.
   \end{itemize}
 
   \begin{center}
     \includegraphics[scale=0.25]{img/LPB_Example.pdf}
-    \captionof{figure}{A LBP Example}
+    \captionof{figure}{LBP Example}
   \end{center}
 }
 
 \headerbox{Earliest Expected Job First}{name=eejf, column=3, span=1,  below=lbp, bottomaligned=background}{
   \textbf{EEJF} is designed to delay the new flows that may traverse congested links.
   \begin{itemize}\compresslist
-  \item We built a network-aware performance model of the underlying system.
-  \item Uses this model to predict the expected completion time of a transaction.
-  \item Orders the transactions using this expected completion time.
+  \item \textbf{EEJF} utilizes a network-aware performance model of the underlying system.
+  \item \textbf{EEJF} uses this model to predict the expected completion time of a transaction.
+  \item Orders transactions using this expected completion time.
   \end{itemize}
 }
 
 \headerbox{Performance Evaluation}{name=performance, column=0, span=3,below=background, above=bottom}{
-  \begin{multicols}{4}
+  \begin{multicols}{3}
     \begin{itemize}\compresslist
-    \item We use Mininet in a 9-node cluster to emulate a multi-rooted tree topology with 1Gbps links and with a total of 64 virtual servers.
-    \item We use a modified version of the RUBiS benchmark to evaluate NetStore against the Equal-Cost Multi-Path (ECMP) routing algorithm.
+    \item Mininet is used in a 9-node cluster to emulate a multi-rooted tree topology with 1Gbps links.
+    \item There are a total of eight Top-of-Rack switches and each is connected to eight virtual servers.
+    \item A modified version of the RUBiS benchmark is utilized to evaluate NetStore.
+    \item Equal-Cost Multi-Path (ECMP) routing is used
+      as a baseline for comparison.
+
     \end{itemize}
-    \begin{center}
-      \hspace{0.5em}
-      \includegraphics[scale=0.18]{img/exp_setup.pdf}
-      \captionof{figure}{Testbed Network Topology Setup}
-    \end{center}
+    %% \begin{center}
+    %%   \hspace{0.5em}
+    %%   \includegraphics[scale=0.18]{img/exp_setup.pdf}
+    %%   \captionof{figure}{Testbed Network Topology Setup}
+    %% \end{center}
     \begin{center}
       \hspace{1.0em}
-      \includegraphics[scale=0.28]{img/all_bar_with_all_bars.pdf}
+      \includegraphics[scale=0.35]{img/all_bar_with_all_bars.pdf}
       \captionof{figure}{ECMP vs NetStore - Average transaction completion time.}
     \end{center}
     \vspace{1.2em}
     %% \center\textbf{Experimental Setup}
     %% \myv
+  \vfill
+  \columnbreak
+  \vspace{1em}
     \begin{itemize}\compresslist
     \item NetStore has reduced the average transaction completion time by 85\% at an interarrival rate of 49 milliseconds.
-    \item NetStore is consistently performing over 50\% better than ECMP without sacrificing throughput while the network is saturated.
+    \item NetStore is consistently performing over 50\% better than ECMP while the network is congested.
+    \item This performance improvement is achieved without sacrificing the system throughput.
     \end{itemize}
   \end{multicols}
 }
@@ -252,7 +261,7 @@ A network-aware transaction processing system which applies three optimization t
   \vspace{0.1em}
   \begin{itemize}
   \item NetStore bridges the gap between network research and distributed database research to avoid transaction performance deterioration due to network saturation.
-  \item NetStore uses cross-layer optimizations that rely on dynamic network information to improve transaction performance.
+  \item NetStore employs cross-layer optimizations that rely on dynamic network information to improve transaction performance.
   %% \item NetStore significantly improves the average transaction completion times while maintaining the system throughput.
   \end{itemize}
 }
