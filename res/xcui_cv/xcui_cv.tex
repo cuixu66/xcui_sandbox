@@ -44,6 +44,13 @@
 
 \newsectionwidth{0pt} % Stops section indenting
 
+\newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}
+
+
 \begin{document}
 
 %----------------------------------------------------------------------------------------
@@ -57,7 +64,7 @@
   \leavevmode\hbox to \textwidth{
     \@tablebox{
       % left address
-      {\bf Local Address} \\ Apt 911 - 137 University Ave. \\ Waterloo, ON. N2L 3E6 \\ (226)-989-1171
+      {\bf Local Address} \\ Apt 707 - 66 Mooregate Cres. \\ Kitchener, ON. N2M 5E6 \\ (226)-989-1171
     }\hfil
     \@tablebox{
       % middle information: used \hspace to make it look better
@@ -287,7 +294,7 @@ University of Waterloo, Waterloo Ontario\hfill Winter 2014, Spring 2014, Fall 20
 \begin{itemize} \itemsep -2pt
 \item CS136 --  Elementary Algorithm Design and Data Abstraction  \hfill Winter 2014, Fall 2014
 \item CS230 -- Introduction to Computers and Computer Systems \hfill Fall 2013, Fall 2015
-\item CS241 -- Foundations of Sequential Programs \hfill Winter 2016, Spring 2016
+\item CS241 -- Foundations of Sequential Programs \hfill Winter 2016, Spring 2016, Fall 2016
 \item CS350 -- Operating Systems \hfill Spring 2015
 \item CS454 -- Distributed Systems \hfill Spring 2015
 \end{itemize}
@@ -304,13 +311,17 @@ University of Waterloo, Waterloo Ontario\hfill Winter 2014, Spring 2014, Fall 20
 
 \vspace{15pt} % Reduce space between section title and contents
 
-\begin{itemize} \itemsep -2pt
-\item Exploiting Text Workshop Volunteer, Waterloo Canada \hfill August 7 -- 8, 2014.
-\item CS4U DAY Volunteer, Waterloo Canada \hfill December 7, 2015.
-  \vspace{-7pt} % Reduce space between section title and contents
-  \begin{itemize} \itemsep -2pt
-  \item Presented a research poster, which was created as a graduate course deliverable, to visiting high school students.
+\begin{itemize}\compresslist
+\item Chinese Information \& Assistance Service Association (CIASA) Volunteer   \hfill June 2016 - Present.
+  \begin{itemize}\compresslist
+  \item CIASA is an emerging non-profit organization that aims to improve Chinese immigrants' the standard of living and quality of life in Canada.
+  CIASA provides and promotes quality service to Chinese communities through technological innovations. I volunteer to provide service and to help creating the innovative information system to serve CIASA's mission.
   \end{itemize}
+\item CS4U DAY Volunteer, Waterloo Canada \hfill December 7, 2015.
+  \begin{itemize}\compresslist
+  \item Presented a research poster, which was created as a graduate course deliverable, to visiting high school students.
+\end{itemize}
+\item Exploiting Text Workshop Volunteer, Waterloo Canada \hfill August 7 -- 8, 2014.
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
@@ -345,7 +356,7 @@ University of Waterloo, Waterloo Ontario\hfill Winter 2014, Spring 2014, Fall 20
 \vspace{-5pt} % Reduce space between section title and contents
 
 \begin{center}
-Spend time with my family, read, ski, meditate
+Meditate, read, ski, spend time with my family
 \end{center}
 
 %----------------------------------------------------------------------------------------
