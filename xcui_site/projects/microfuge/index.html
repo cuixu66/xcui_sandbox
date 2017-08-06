@@ -49,14 +49,7 @@
 	<a name="about_me"></a>
 	<h2>About</h2>
 	<p>
-          Cloud computing has significantly improved resource utilization by having multiple tenants share the same resources.
-          However, this reduces the isolation between tenants which may lead to inconsistent and unpredictable performance.
-          Providing predictable performance is particular important for cloud storage systems because they are often the performance bottlenecks for many cloud-based services.
-          <b>MicroFuge</b> is a distributed caching and scheduling middleware that provides perform isolation for cloud storage systems by meeting client requirement in spite of competing resources from other tenants.
-          Clients provide request deadlines to our system and MicroFuge provides performance isolation by meeting their deadlines.
-          MicroFuge addresses the problem by building an empirically-driven performance model of the underlying storage system based on measured data.
-          Using this model, MicroFuge reduces deadline misses through adaptive deadline-aware cache eviction, scheduling and load-balancing policies.
-          MicroFuge can also perform early rejection of requests that are unlikely to make their deadlines.
+          <b>MicroFuge</b> is a distributed middleware that provides performance isolation for cloud storage system by building a lightweight and accurate performance model of the underlying storage system using measured data, mapping performance isolation requirements into latency-based deadlines, and then adding a deadline-conscious, performance model-driven caching and scheduling layer to the cloud storage stack. Compared to using Memecached, our prototype implementation can reduce the deadline-missed rate of a modified YCSB workload by more than 40% in an EC2 deployment.
 	</p>
       </div>
 
@@ -143,7 +136,7 @@
 		MicroFuge: A Middleware Approach to Providing Performance Isolation in Cloud Storage Systems.
 	      </b>
 	      <br>
-	      Akshay K. Singh, <b>Xu Cui</b>, Benjamin Cassell, Bernard Wong, and Khuzaima Daudjee.
+	      Akshay K. Singh, Xu Cui, Benjamin Cassell, Bernard Wong, and Khuzaima Daudjee.
 	      <br>
 	      In Proceedings of the <i>International Conference on Distributed Computing Systems (ICDCS),</i>
 	      <br>
@@ -202,8 +195,8 @@
         <div class="list_style">
           <ul>
             <li>Akshay K. Singh</li>
-            <li>Xu Cui</li>
-            <li>Benjamin Cassell</li>
+            <li><a href="https://cs.uwaterloo.ca/~xcui/" target="_blank">Xu Cui</a></li>
+            <li><a href="https://cs.uwaterloo.ca/~becassel/" target="_blank">Benjamin Cassell</a></li>
             <li>He Huang</li>
             <li><a href="https://cs.uwaterloo.ca/~bernard/" target="_blank">Professor Bernard Wong</a></li>
             <li><a href="https://cs.uwaterloo.ca/~kdaudjee/" target="_blank">Professor Khuzaima Daudjee</a></li>

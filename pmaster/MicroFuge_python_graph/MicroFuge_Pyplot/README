@@ -1,4 +1,9 @@
 Update:
+June 9th, 2015 update:
+Note: the string "_size100k" you see in the data directory names and graphing scripts means
+there are 100,000 Operations in the workload.(Specicifed in the following file.
+xcui@hm660:/home/xcui/ICDCS/EC2_ICDCS_BCK_IMPORTANT/dfsRunFiles_edlc1/workloads/workload_test
+
 Working in this directory again as of April 9th 2014.
 
 Working directory of MicroFuge graphs as of Dec 5 2013.
